@@ -1,0 +1,7 @@
+  ja:
+    enums:
+      dinner:
+        style:
+          eating_out: "外食"
+          taking_in: "中食"
+          home_cooking: "内食"
