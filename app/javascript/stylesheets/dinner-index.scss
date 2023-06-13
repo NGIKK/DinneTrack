@@ -1,0 +1,19 @@
+.dinner-card {
+  width: 50%;
+  margin: auto;
+  background-color: #f5f5dc;
+  box-shadow: 15px 15px 0px 0 rgb(60, 194, 235);
+
+  &__content {
+    display: flex;
+    margin-bottom: 2em;
+  }
+
+  &__text {
+    padding: 1em 0.5em;
+
+    &--sm {
+     border-bottom: 1px solid;
+    }
+  }
+}

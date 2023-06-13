@@ -8,7 +8,11 @@ import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import 'jquery'
+import "popper.js";
+import "bootstrap";
 import "../stylesheets/application"
+import Chart from "chart.js/auto";
+global.Chart = Chart;
 
 Rails.start()
 Turbolinks.start()

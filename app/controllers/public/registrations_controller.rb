@@ -41,12 +41,12 @@ class Public::RegistrationsController < Devise::RegistrationsController
   # protected
 
   def after_sign_up_path_for(resource)
-    mypage_user_path
+    mypage_users_path
   end
 
   # If you have extra params to permit, append them to the sanitizer.
    def configure_sign_up_params
-     devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
+     devise_parameter_sanitizer.permit(:sign_up, keys: [:name,:genre_id])
    end
 
   # If you have extra params to permit, append them to the sanitizer.

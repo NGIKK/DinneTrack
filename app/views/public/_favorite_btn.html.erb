@@ -1,0 +1,9 @@
+<% if dinner.favorited_by?(current_user) %>
+<%= link_to dinner_favorites_path(dinner.id), method: :delete do %>
+<i class="fa-solid fa-heart"></i><%= dinner.favorites.count %>
+<% end %>
+<% else %>
+<%= link_to dinner_favorites_path(dinner.id), method: :post do %>
+<i class="fa-regular fa-heart"></i><%= dinner.favorites.count %>
+<% end %>
+<% end %>

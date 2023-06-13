@@ -1,2 +1,52 @@
-<h1>Public::Dinners#new</h1>
-<p>Find me in app/views/public/dinners/new.html.erb</p>
+<h1>あなたの夕食を共有しましょう</h1>
+
+<div class="dinner">
+
+<div class="dinner__form">
+ <%= form_with model: @dinner, url: dinners_path, method: :post do |f| %>
+
+ <div>
+  <%= f.label :dinner_image,"image" %>
+  <%= f.file_field :dinner_image, accept: "image/*" %>
+ </div>
+
+ <div>
+ <%= f.label :title, "Title" %>
+ <%= f.text_field :title, placeholder: "タイトル", autofocus: true %>
+ </div>
+
+ <div>
+ <%= f.label :genre_id, "Genre" %>
+ <%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "-- 選択してください --" %>
+ </div>
+
+ <div>
+ <%= f.label :cost, "COST" %>
+ <!--一番大きい位1~9、以降の位0~9の半角数字のみ許可-->
+ &yen;<%= f.text_field :cost, pattern:"^[1-9][0-9]*$",autofocus: true %>
+ </div>
+
+ <div>
+ <%= f.label :memo, "MEMO" %>
+ <%= f.text_area :memo, placeholder: "レシピや参考URLを入力してください",autofocus: true %>
+ </div>
+
+ <div>
+   <%= f.radio_button :style, :eating_out%>
+   <%= f.label :style, "外食" %>
+   <%= f.radio_button :style, :taking_in%>
+   <%= f.label :style, "中食" %>
+   <%= f.radio_button :style, :home_cooking%>
+   <%= f.label :style, "内食" %>
+ </div>
+
+ <div>
+   <%= f.label :is_posted,"アルバムに登録" %>
+   <%= f.check_box :is_posted, id: :dinner_is_posted, :as => :boolean %>
+ </div>
+
+ <%= f.submit "投稿する"%>
+
+  <% end %>
+</div>
+</div>

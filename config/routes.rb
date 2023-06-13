@@ -10,8 +10,8 @@ Rails.application.routes.draw do
     passwords: 'public/passwords'
   }
 
-  devise_scope :users do
-    get '/admin/sign_out' => 'public/sessions#destroy'
+  devise_scope :user do
+    post "users/guest_sign_in",to: "public/sessions#guest_sign_in"
   end
 
   # urlにadminを含める
@@ -19,7 +19,7 @@ Rails.application.routes.draw do
     get "/" => "homes#top"
     resources :users, only: [:index,:show,:edit,:update,:destroy]
     resources :tags, only: [:index,:create,:edit,:update]
-    resources :dinners, only: [:index,:show,:destroy]
+    resources :dinners, only: [:show,:destroy]
     resources :genres, only: [:index,:create,:edit,:update]
  end
 
@@ -30,11 +30,15 @@ Rails.application.routes.draw do
 
     resources :users, only: [:index,:show,:edit,:update,:destroy] do
       resource :relationships, only: [:create,:destroy]
-      get "followings" => "relationship#followings", as: "followings"
-      get "followers" => "relationship#followers", as: "followers"
+      get "followings" => "relationships#followings", as: "followings"
+      get "followers" => "relationships#followers", as: "followers"
       resources :meal_records, only: [:new,:create,:edit,:update,:destroy]
       member do
+        get "favorites" => "users#favorites"
+      end
+      collection do
         get "mypage" => "users#mypage"
+        # get "search" => ""
       end
     end
 

@@ -1,3 +1,25 @@
-<h1>Homes#top</h1>
-<p>Find me in app/views/homes/top.html.erb</p>
-<%=link_to "新規登録", new_user_registration_path %>
+<div class="top">
+<%= image_tag 'cover.jpg', alt: 'TOP画像', class: "top__image" %>
+<h1 class="top__text">DinneTrack</h1>
+</div>
+
+<div class="container">
+<div class="top__introduction">
+
+<p>夕飯をシェアしながら、アイディアを得るSNS</p>
+<p>食生活の記録も気軽に行えます</p>
+<p>さあ、あなたも初めましょう</p>
+<div>
+  <%=link_to "About more", about_path %>
+</div>
+<%=link_to "新規登録", new_user_registration_path, class:"btn btn-success" %>
+<%=link_to "ゲストログイン", users_guest_sign_in_path,method: :post, class:"btn btn-info" %>
+</div>
+
+<div>
+  <p>プライバシーポリシー</p>
+  <p>利用規約</p>
+</div>
+
+</div>
+</div>

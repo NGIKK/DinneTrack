@@ -1,2 +1,70 @@
-<h1>Admin::Users#show</h1>
-<p>Find me in app/views/admin/users/show.html.erb</p>
+<h1><%= @user.name %>さんの会員詳細</h1>
+
+<div class="main-content">
+
+<div class="sidebar">
+<table class="table">
+  <tbody>
+    <tr>
+      <td><%=image_tag @user.get_profile_image("200x200","100x100+0+0") %></td>
+    </tr>
+    <tr>
+      <td>
+        ユーザID: <%= @user.id %>
+      </td>
+    </tr>
+    <tr>
+      <td>email: <%= @user.email %></td>
+    </tr>
+    <tr>
+      <td>username</br>
+      <%= @user.name %></td>
+    </tr>
+    <tr>
+      <td>favorite</br>
+      <%= @user.favorite_genre_name(@user) %></td>
+    </tr>
+    <tr>
+      <td>introduction</br>
+      <%= @user.introduction%></td>
+    </tr>
+    <tr>
+      <td>ステータス</br>
+      <%= @user.user_status(@user) %></td>
+    </tr>
+    <tr>
+      <td>
+      <%= link_to edit_admin_user_path(@user.id) do %>
+      <button><%= "利用停止・退会処置をする"%></button>
+      <% end %>
+      </td>
+    </tr>
+    </tbody>
+    </table>
+</div>
+
+<div class="right-content">
+ <table class="table">
+   <thead>
+    <tr>
+      <th colspan="5">投稿一覧</th>
+    </tr>
+   </thead>
+ <% @dinners.each do |dinner|%>
+ <tbody>
+ <tr>
+  <td><%= image_tag dinner.get_dinner_image("100x100","100x100+0+0")%></td>
+  <td>
+   <%= link_to admin_dinner_path(dinner.id) do %>
+   <%= dinner.title %>
+   <% end %>
+  </td>
+  <td><%= dinner.genre.name %></td>
+  <td><%= dinner.created_at%></td>
+ </tr>
+ </tbody>
+<% end %>
+</table>
+
+</div>
+</div>

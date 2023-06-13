@@ -1,2 +1,13 @@
-<h1>Public::Dinners#index</h1>
-<p>Find me in app/views/public/dinners/index.html.erb</p>
+<h1>投稿一覧</h1>
+
+<div class="main-content">
+<div class="sidebar">
+<%= render "public/user_info", user: @user  %>
+</div>
+
+<div class="right-content">
+<%=render "public/dinner_index", dinners: @dinners %>
+</div>
+
+</div>
+</div>

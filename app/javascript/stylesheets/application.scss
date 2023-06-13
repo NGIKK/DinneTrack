@@ -1,15 +1,62 @@
-// @import "~bootstrap/scss/bootstrap";
+*{
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+ }
+
+main{
+  min-height: 100vh;
+}
+
+@import "~bootstrap/scss/bootstrap";
 // @import '~@fortawesome/fontawesome-free/scss/fontawesome';
+@import "header";
+@import "footer";
+@import "top";
+@import "sidebar";
+@import "dinner-index";
 
-footer {
-  width: 100%;
-  margin-top: auto;
-  background-color: orange;
-  text-align: center;
+.main-content {
+  display: flex;
 }
 
-header {
-  width: 100%;
-  margin-top: auto;
-  background-color: orange;
+.sidebar{
+  width: 30%;
+  min-height: 100vh;
+  background-color: #f5f5f5;
 }
+
+.right-content{
+  width: 70%;
+}
+
+.sign-in {
+  margin: auto;
+  width: 30%;
+  background: #f1f1f1;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.22);
+
+  &__title {
+    margin-top: 5em;
+    font-size: 1.2em;
+    background: #bdb76b;
+    padding: 5px;
+    text-align: center;
+    color: #FFF;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+  }
+
+  &__from {
+    padding: 2em;
+  }
+}
+
+main {
+	background-image:
+		linear-gradient(0deg, rgba(190,200,206,0.3) 1px, rgba(0,0,0,0) 0),
+		linear-gradient(90deg, rgba(190,200,206,0.3) 1px, rgba(0,0,0,0) 0);
+	background-size: 20px 20px;
+	background-position: center;
+}
+

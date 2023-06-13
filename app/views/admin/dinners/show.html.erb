@@ -1,2 +1,65 @@
-<h1>Admin::Dinners#show</h1>
-<p>Find me in app/views/admin/dinners/show.html.erb</p>
+<div class="col-md-10">
+<div class="row">
+<h1>投稿詳細</h1>
+<div class="dinner-detail">
+
+<div class="dinner-detail__auther">
+<%= image_tag @dinner.user.get_profile_image("50x50","40x40+0+0")%>
+<%= link_to user_path(@dinner.user.id) do %>
+<%= @dinner.user.name %>
+<% end %>
+</div>
+
+ <div>
+ <%= link_to "投稿削除", admin_dinner_path(@dinner.id), method: :delete,
+     data: { confirm: "【確認】投稿を削除しますか？" },class:"btn btn-danger"%>
+ </div>
+
+<div class="dinner-detail__content">
+<div class="dinner-detail__image">
+<%= image_tag @dinner.get_dinner_image("200x200","200x200+0+0")%>
+</div>
+
+<div class="dinner-detail__text">
+
+<div class="dinner-detail__text--sm">
+<%= @dinner.title %>
+</div>
+
+<div class="dinner-detail__text--sm">
+&yen;<%= @dinner.cost %>
+</div>
+
+<div class="dinner-detail__text--lg">
+<%= @dinner.memo %>
+</div>
+
+<div class="dinner-detail__icon">
+<%= render "public/favorite_btn", dinner: @dinner %>
+<span><i class="fa-regular fa-message"></i><%= @dinner.comments.count%></span>
+<span><i class="fa-solid fa-book-open"></i><%= @dinner.dinner_is_posted %></span>
+<span><%= @dinner.genre.name %></span>
+</div>
+
+</div>
+</div>
+
+<% if current_user == @dinner.user %>
+<%= link_to "編集する", edit_dinner_path(@dinner.id),class: "btn btn-success"%>
+<%= link_to "削除する", dinner_path(@dinner.id), method: :delete, class:"btn btn-danger"%>
+<% end %>
+
+<div>
+ <% @dinner.comments.each do |comment| %>
+ <%= image_tag comment.user.get_profile_image("50x50","40x40+0+0")%>
+ <%= comment.user.name %>
+ <%= comment.body %>
+ <%= link_to "削除", dinner_comment_path(comment.dinner_id,comment.id), method: :delete, class:"btn btn-danger btn-sm" %>
+ <% end %>
+</div>
+
+</div>
+
+
+</div>
+</div>

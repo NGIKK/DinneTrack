@@ -1,2 +1,36 @@
-<h1>Admin::Homes#top</h1>
-<p>Find me in app/views/admin/homes/top.html.erb</p>
+<h1>投稿一覧</h1>
+
+<div class="col-md-10">
+<div class="row">
+
+<table class="table">
+  <thead>
+  <tr>
+   <th colspan="2">ユーザ</th>
+   <th colspan="4">投稿</th>
+  </tr>
+  </thead>
+ <% @dinners.each do |dinner|%>
+ <tbody>
+ <tr>
+  <td><%= image_tag dinner.user.get_profile_image("50x50","50x50+0+0")%></td>
+  <td>
+   <%= link_to admin_user_path(dinner.user_id) do %>
+   <%= dinner.user.name %>
+   <% end %>
+  </td>
+  <td><%= image_tag dinner.get_dinner_image("100x100","100x100+0+0")%></td>
+  <td>
+   <%= link_to admin_dinner_path(dinner.id) do %>
+   <%= dinner.title %>
+   <% end %>
+  </td>
+  <td><%= dinner.genre.name %></td>
+  <td><%= dinner.created_at%></td>
+ </tr>
+ </tbody>
+<% end %>
+</table>
+
+</div>
+</div>

@@ -58,3 +58,4 @@ gem 'devise'
 gem 'kaminari'
 gem "simple_calendar", "~> 2.4"
 gem "enum_help"
+gem "ransack"
