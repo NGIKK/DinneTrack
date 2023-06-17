@@ -2,7 +2,7 @@ class CreateMealRecords < ActiveRecord::Migration[6.1]
   def change
     create_table :meal_records do |t|
       t.integer :user_id, foreign_key: true, null: false
-      t.string :breakfast_memo, null: false
+      t.string :breakfast_memo
       t.integer :breakfast_cost, null:false, default: 0
       t.string :lunch_memo
       t.integer :lunch_cost, null:false, default: 0

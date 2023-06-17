@@ -48,14 +48,6 @@ class User < ApplicationRecord
     end
   end
 
-  def user_status(user)
-    if user.is_deleted
-       "停止措置中"
-    else
-      "有効"
-    end
-  end
-
   def follow(user)
     relationships.create(followed_id: user.id)
   end

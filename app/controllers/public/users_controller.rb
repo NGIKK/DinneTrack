@@ -27,6 +27,9 @@ class Public::UsersController < ApplicationController
 
   def mypage
     @user = current_user
+    @meal_record = MealRecord.new
+    @meal_records = @user.meal_record.all
+    # @edit_meal_record = MealRecord.find(params[:meal_record_id])
   end
 
   def favorites

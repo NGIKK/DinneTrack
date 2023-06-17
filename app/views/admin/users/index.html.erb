@@ -27,7 +27,11 @@
   </td>
   <td><%= "#{user.dinners.count}"%></td>
   <td><%= user.favorite_genre_name(user)%></td>
-  <td><%= user.user_status(user) %></td>
+  <td><% if user.is_deleted %>
+       <span class="text-danger">停止措置中</span>
+      <% else %>
+      <span class="text-success">有効</span>
+      <% end %></td>
  </tr>
  </tbody>
 <% end %>

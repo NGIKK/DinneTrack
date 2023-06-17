@@ -87,7 +87,7 @@ ActiveRecord::Schema.define(version: 2023_06_06_064207) do
 
   create_table "meal_records", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.string "breakfast_memo", null: false
+    t.string "breakfast_memo"
     t.integer "breakfast_cost", default: 0, null: false
     t.string "lunch_memo"
     t.integer "lunch_cost", default: 0, null: false
@@ -116,6 +116,7 @@ ActiveRecord::Schema.define(version: 2023_06_06_064207) do
     t.integer "tag_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["dinner_id", "tag_id"], name: "index_taggings_on_dinner_id_and_tag_id", unique: true
   end
 
   create_table "tags", force: :cascade do |t|

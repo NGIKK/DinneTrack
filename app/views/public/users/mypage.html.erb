@@ -1,5 +1,44 @@
+<%= render "layouts/error", obj: @meal_record%>
 <div class="main-content">
 <div class="sidebar">
 <%= render "public/user_info", user: @user  %>
 </div>
+
+<div class="right-content">
+  <p class="">新規投稿</p>
+  <div id ="new-meal-form" style="display: none;">
+    <%= form_with model:[@user,@meal_record], url: user_meal_records_path(@user.id), method: :post do |f| %>
+    <%= f.date_field :track_date %></br>
+    <%= f.label :breakfast_memo %>
+    <%= f.text_field :breakfast_memo %></br>
+    <%= f.label :breakfast_cost %>
+    <%= f.text_field :breakfast_cost %></br>
+    <%= f.label :lunch_memo %>
+    <%= f.text_field :lunch_memo %></br>
+    <%= f.label :lunch_cost %>
+    <%= f.text_field :lunch_cost %></br>
+    <%= f.label :dinner_memo %>
+    <%= f.text_field :dinner_memo %></br>
+    <%= f.label :dinner_cost %>
+    <%= f.text_field :dinner_cost %></br>
+    <%= f.label :snack_memo %>
+    <%= f.text_field :snack_memo %></br>
+    <%= f.label :snack_cost %>
+    <%= f.text_field :snack_cost %></br>
+    <%= f.label :something_memo %>
+    <%= f.text_field :something_memo %></br>
+    <%= f.label :something_cost %>
+    <%= f.text_field :something_cost %></br>
+    <%= f.submit "登録"%>
+    <% end %>
+  </div>
+<%= month_calendar(attribute: :track_date, events: @meal_records) do |date, meal_records| %>
+  <%= date %>
+   <% meal_records.each do |meal_record| %>
+   <div>
+      <%= meal_record.breakfast_memo %>
+   </div>
+<% end %>
 </div>
+</div>
+<% end %>

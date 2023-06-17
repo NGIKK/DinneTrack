@@ -25,6 +25,7 @@ class Public::DinnersController < ApplicationController
 
   def edit
     @dinner = Dinner.find(params[:id])
+    # byebug
   end
 
   def update
@@ -35,7 +36,7 @@ class Public::DinnersController < ApplicationController
       render :edit
     end
   end
-  
+
   def destroy
     dinner = Dinner.find(params[:id])
     dinner.destroy
@@ -50,8 +51,8 @@ class Public::DinnersController < ApplicationController
   private
 
   def dinner_params
-    params.require(:dinner).permit(:dinner_image,:user_id,:genre_id,:title,:cost,:memo,:style,:is_posted)
+    params.require(:dinner).permit(:dinner_image,:user_id,:genre_id,:title,:cost,:memo,:style,:is_posted,
+                                   tags_attributes: [:id,:name],tag_ids: [])
   end
-
 
 end

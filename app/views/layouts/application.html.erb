@@ -7,7 +7,7 @@
     <%= csp_meta_tag %>
 
    <script src="https://kit.fontawesome.com/f419bc8bff.js" crossorigin="anonymous"></script>
-   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+   <!--<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>-->
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -15,6 +15,11 @@
   <body>
     <%= render "layouts/header"%>
     <main>
+    <%= form_with url: search_path, method: :get do |f| %>
+    <%= f.text_field :tags, placeholder: "一推しを材料名で検索" %>
+    <%= f.submit "検索" %>
+    <% end %>
+
     <%= flash[:notice]%>
     <%= yield %>
     </main>

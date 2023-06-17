@@ -43,11 +43,12 @@
 
 <canvas id="genreChart"></canvas>
 <canvas id="dinnerStyle"></canvas>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
 var ctx = document.getElementById("genreChart")
 $(document).on('turbolinks:load', function() {
   var genreChart = new Chart(ctx,{
-    type: 'rader',
+    type: 'radar',
     data: {
       labels: ['和食','洋食','中華','アジア・エスニック','その他'],
       datasets: [{
@@ -60,11 +61,23 @@ $(document).on('turbolinks:load', function() {
          r: {
            suggestedMin: 0,
            suggestedMax: 10,
-           stepSize: 1,
-           callback: function(value, index, values){
-                   return  value +  '点' }
+           stepSize: 2,
           }
      }
+    }
+  });
+ });
+
+ var ctxx = document.getElementById("dinnerStyle")
+ $(document).on('turbolinks:load', function() {
+  var genreChart = new Chart(ctxx,{
+    type: 'doughnut',
+    data: {
+      labels: ['外食','中食','内食'],
+      datasets: [{
+        label: 'ジャンル別投稿数',
+        data: <%= user.dinners.post_dinner_style_count %>
+      }]
     }
   });
  });

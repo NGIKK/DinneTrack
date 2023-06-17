@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   namespace :admin do
     get "/" => "homes#top"
     resources :users, only: [:index,:show,:edit,:update,:destroy]
-    resources :tags, only: [:index,:create,:edit,:update]
+    resources :tags, only: [:index,:destroy]
     resources :dinners, only: [:show,:destroy]
     resources :genres, only: [:index,:create,:edit,:update]
  end
@@ -27,6 +27,7 @@ Rails.application.routes.draw do
  scope module: :public do
    root to: "homes#top"
     get "/about" => "homes#about"
+    get '/search' => "searches#search"
 
     resources :users, only: [:index,:show,:edit,:update,:destroy] do
       resource :relationships, only: [:create,:destroy]
