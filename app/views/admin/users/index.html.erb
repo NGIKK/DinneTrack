@@ -1,10 +1,13 @@
-<h1>ユーザ一覧</h1>
+<div class="container">
 
-<div class="col-md-10">
-<div class="row">
+<div class="row mt-2">
+<h1 class= "admin__page-title">ユーザ一覧</h1>
+</div>
 
-<table class="table">
-  <thead>
+<div class="row col-md-10 mt-3">
+
+<table class="table table-sm">
+  <thead class="thead-light">
   <tr>
    <th colspan="2">ID</th>
    <th>メールアドレス</th>
@@ -31,16 +34,14 @@
        <span class="text-danger">停止措置中</span>
       <% else %>
       <span class="text-success">有効</span>
-      <% end %></td>
+      <% end %>
+  </td>
  </tr>
  </tbody>
 <% end %>
 </table>
 
-
-
-
-
+<div class="d-flex justify-content-center mt-2"><%= paginate @users %></div>
 
 
 </div>

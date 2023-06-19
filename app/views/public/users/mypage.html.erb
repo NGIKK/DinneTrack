@@ -4,9 +4,20 @@
 <%= render "public/user_info", user: @user  %>
 </div>
 
+<% unless @user.genre_id == nil %>
+<% @recommendations.each do |recommendation| %>
+<%= link_to dinner_path(recommendation.id) do%>
+<%= recommendation.title %>
+<% end %>
+<% end %>
+<% else %>
+<p>ジャンルをお気に入り登録すると、登録ジャンルの投稿をおすすめ表示します。</p>
+<% end %>
+
 <div class="right-content">
-  <p class="">新規投稿</p>
-  <div id ="new-meal-form" style="display: none;">
+  <i class="fa-solid fa-marker" id="new-btn">食事記録</i>
+  <div id ="meal-form" style="display: none;">
+    <i class="fa-solid fa-square-xmark" id="close-btn"></i>
     <%= form_with model:[@user,@meal_record], url: user_meal_records_path(@user.id), method: :post do |f| %>
     <%= f.date_field :track_date %></br>
     <%= f.label :breakfast_memo %>
@@ -36,9 +47,51 @@
   <%= date %>
    <% meal_records.each do |meal_record| %>
    <div>
-      <%= meal_record.breakfast_memo %>
+      <i class="fa-regular fa-file-lines record-icon"></i>
+      <div style="display: none;" class="meal-record">
+        <i class="fa-solid fa-square-xmark record-close-btn"></i>
+        <%= meal_record.track_date%>
+      </div>
    </div>
 <% end %>
 </div>
 </div>
 <% end %>
+
+<!--食事記録投稿用-->
+<script>
+var newBtn = document.getElementById('new-btn');
+var mealForm = document.getElementById('meal-form');
+var closeBtn = document.getElementById('close-btn');
+
+newBtn.addEventListener('click', function() {
+  mealForm.style.display = 'block';
+});
+
+closeBtn.addEventListener('click', function() {
+  mealForm.style.display = 'none';
+});
+
+var recordIcons = document.getElementsByClassName('record-icon');
+var mealRecords = document.getElementsByClassName('meal-record');
+var recordCloseBtns = document.getElementsByClassName('record-close-btn');
+
+for (var i = 0; i < recordIcons.length; i++) {
+  recordIcons[i].addEventListener('click', openMealRecord);
+}
+
+for (var i = 0; i < recordCloseBtns.length; i++) {
+  recordCloseBtns[i].addEventListener('click', hideMealRecord);
+}
+
+function openMealRecord() {
+  var mealRecord = this.nextElementSibling;
+  mealRecord.style.display = 'block';
+}
+
+function hideMealRecord() {
+  var mealRecord = this.parentNode;
+  mealRecord.style.display = 'none';
+}
+
+</script>

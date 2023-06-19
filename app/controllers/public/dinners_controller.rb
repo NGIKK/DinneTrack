@@ -1,7 +1,12 @@
 class Public::DinnersController < ApplicationController
   def index
-    @dinners = Dinner.all
-    @user = current_user
+    if params[:followings_dinner]
+      @user = current_user
+      @dinners = Dinner.where(user_id: @user.followings.ids).page(params[:page]).per(8).order(created_at: :desc)
+    else
+     @dinners = Dinner.all.page(params[:page]).per(8).order(created_at: :desc)
+     @user = current_user
+    end
   end
 
   def new

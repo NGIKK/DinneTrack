@@ -20,7 +20,6 @@ Rails.application.routes.draw do
     resources :users, only: [:index,:show,:edit,:update,:destroy]
     resources :tags, only: [:index,:destroy]
     resources :dinners, only: [:show,:destroy]
-    resources :genres, only: [:index,:create,:edit,:update]
  end
 
  # urlにpublicを含めない

@@ -1,10 +1,13 @@
-<h1>投稿一覧</h1>
+<div class="container">
 
-<div class="col-md-10">
-<div class="row">
+<div class="row mt-2">
+<h1 class= "admin__page-title">投稿一覧</h1>
+</div>
 
-<table class="table">
-  <thead>
+<div class="row col-md-10 mt-3">
+
+<table class="table table-sm">
+  <thead class="thead-light">
   <tr>
    <th colspan="2">ユーザ</th>
    <th colspan="4">投稿</th>
@@ -26,11 +29,12 @@
    <% end %>
   </td>
   <td><%= dinner.genre.name %></td>
-  <td><%= dinner.created_at%></td>
+  <td><%= l dinner.created_at%></td>
  </tr>
  </tbody>
 <% end %>
 </table>
 
+<div class="d-flex justify-content-center mt-2"><%= paginate @dinners %></div>
 </div>
 </div>

@@ -5,3 +5,6 @@
           eating_out: "外食"
           taking_in: "中食"
           home_cooking: "内食"
+    time:
+      formats:
+        default: "%Y/%m/%d %H:%M:%S"

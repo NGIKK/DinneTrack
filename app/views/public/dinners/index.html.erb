@@ -1,5 +1,7 @@
 <h1>投稿一覧</h1>
 
+<%= link_to "フォローユーザーの投稿に切り替え", dinners_path(followings_dinner: true)%>
+<%= link_to "全投稿表示", dinners_path %>
 <div class="main-content">
 <div class="sidebar">
 <%= render "public/user_info", user: @user  %>

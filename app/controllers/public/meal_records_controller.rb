@@ -3,7 +3,7 @@ class Public::MealRecordsController < ApplicationController
   def create
     meal_record = MealRecord.new(meal_record_params)
     meal_record.user_id = current_user.id
-    if meal_record.save!
+    if meal_record.save
       redirect_to mypage_users_path, notice: "食事記録を登録しました"
     else
       @user = current_user

@@ -15,9 +15,11 @@
   <body>
     <%= render "layouts/header"%>
     <main>
+    <% unless admin_signed_in? %>
     <%= form_with url: search_path, method: :get do |f| %>
     <%= f.text_field :tags, placeholder: "一推しを材料名で検索" %>
     <%= f.submit "検索" %>
+    <% end %>
     <% end %>
 
     <%= flash[:notice]%>

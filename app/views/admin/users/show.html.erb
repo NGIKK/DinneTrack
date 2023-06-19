@@ -1,8 +1,12 @@
-<h1><%= @user.name %>さんの会員詳細</h1>
+<div class="container">
 
-<div class="main-content">
+<div class="row mt-2">
+<h1 class="admin__page-title"><%= @user.name %>さんの会員詳細</h1>
+</div>
 
-<div class="sidebar">
+<div class="row mt-3 d-flex">
+
+<div class="sidebar col-md-3">
 <table class="table">
   <tbody>
     <tr>
@@ -14,23 +18,28 @@
       </td>
     </tr>
     <tr>
-      <td>email: <%= @user.email %></td>
+      <td>Email: <%= @user.email %></td>
     </tr>
     <tr>
-      <td>username</br>
+      <td>ユーザ名</br>
       <%= @user.name %></td>
     </tr>
     <tr>
-      <td>favorite</br>
+      <td>Favorite</br>
       <%= @user.favorite_genre_name(@user) %></td>
     </tr>
     <tr>
-      <td>introduction</br>
+      <td>Introduction</br>
       <%= @user.introduction%></td>
     </tr>
     <tr>
       <td>ステータス</br>
-      <%= @user.user_status(@user) %></td>
+      <% if @user.is_deleted %>
+      <span class="text-danger">停止措置中</span>
+      <% else %>
+      <span class="text-success">有効</span>
+      <% end %>
+      </td>
     </tr>
     <tr>
       <td>
@@ -43,9 +52,9 @@
     </table>
 </div>
 
-<div class="right-content">
- <table class="table">
-   <thead>
+<div class="right-content col-md-9">
+ <table class="table table-sm">
+   <thead class="thead-light">
     <tr>
       <th colspan="5">投稿一覧</th>
     </tr>
@@ -60,11 +69,15 @@
    <% end %>
   </td>
   <td><%= dinner.genre.name %></td>
-  <td><%= dinner.created_at%></td>
+  <td><%= l dinner.created_at%></td>
  </tr>
  </tbody>
 <% end %>
 </table>
 
+<div class="d-flex justify-content-center mt-2"><%= paginate @dinners %></div>
+
+
+</div>
 </div>
 </div>

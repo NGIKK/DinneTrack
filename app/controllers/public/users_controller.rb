@@ -4,7 +4,7 @@ class Public::UsersController < ApplicationController
 
   def index
     @q = User.ransack(params[:q])
-    @users = @q.result
+    @users = @q.result.page(params[:page]).per(15)
   end
 
   def show
@@ -30,6 +30,7 @@ class Public::UsersController < ApplicationController
     @meal_record = MealRecord.new
     @meal_records = @user.meal_record.all
     # @edit_meal_record = MealRecord.find(params[:meal_record_id])
+    @recommendations = Dinner.where(genre_id: @user.genre_id).sample(3)
   end
 
   def favorites

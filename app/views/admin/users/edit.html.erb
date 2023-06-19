@@ -1,13 +1,25 @@
+<div class="container">
 
-<h4><strong><%= @user.name %></strong> さんのユーザステータス</h4>
+<div class="row mt-2">
+<h2><strong><%= @user.name %></strong> さんのユーザステータス</h2>
+</div>
 
+<h5 class="row mt-3">ステータス変更</h5>
+<div class="row col-md-4 mt-3">
 <%= form_with model: @user, url: admin_user_path(@user.id), method: :patch do |f| %>
-<%= f.radio_button :is_deleted, :false %>
-<%= f.label :is_deleted, "有効" %>
-<%= f.radio_button :is_deleted, :true %>
-<%= f.label :is_deleted, "利用停止" %>
-<%= f.submit "更新する",class: "btn btn-sm btn-primary"%>
+<%= f.radio_button :is_deleted, :false%>
+<%= f.label :is_deleted, "有効" , class:"mr-3" %>
+<%= f.radio_button :is_deleted, :true%>
+<%= f.label :is_deleted, "利用停止" %></br>
+<%= f.submit "変更する",class: "btn btn-primary"%>
 <% end %>
+</div>
 
-<p>退会措置</p>
-<%= link_to "退会措置を行う", admin_user_path(@user.id), method: :delete, data: { confirm: "【確認】ユーザを削除しますか？" }, class: "btn btn-danger"%>
+
+<h5 class="row mt-5">退会措置</h5>
+
+<%= link_to "ユーザ削除", admin_user_path(@user.id), method: :delete, data: { confirm: "【確認】ユーザを削除しますか？" }, class: "btn btn-danger"%>
+<p class="mt-2">※ユーザ削除を行うとそのユーザの投稿データも削除され、復元できません。</p>
+</div>
+
+</div>

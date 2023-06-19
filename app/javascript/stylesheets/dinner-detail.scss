@@ -1,0 +1,55 @@
+.dinner-detail {
+  &__card {
+    width: 300px;
+    height: auto;
+
+    &--image{
+      width: 100%;
+      height: auto;
+      background-size: cover;
+      background: #f5f5f5;
+      box-sizing: border-box;
+      display: flex;
+      justify-content: center;
+    }
+
+    &--text {
+      width: 100%;
+      height: auto;
+      padding: 0px 10px 15px;
+      background: #ffffff;
+      box-sizing: border-box;
+
+      &--date{
+        font-size: 15px;
+        color: #dcdcdc;
+        text-align: right;
+      }
+
+      &--title{
+        font-size: 20px;
+        padding: 5px 0;
+        font-weight: bold;
+        line-height: 125%;
+        text-decoration-line: underline;
+        text-underline-offset: 5px;
+      }
+
+      &--sentence{
+        margin-top: 5px;
+      }
+
+      &--genre{
+        background-color: #bdb76b;
+        color: #fff8dc;
+        padding: 3px;
+        border-radius: 10px;
+        float: right;
+      }
+    }
+
+
+  }
+
+
+}

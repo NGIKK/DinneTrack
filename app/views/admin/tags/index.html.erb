@@ -1,10 +1,13 @@
-<h1>材料タグ一覧</h1>
-
 <div class="container">
-<din class="row col-md-6">
+
+<div class="row mt-2">
+<h1 class= "admin__page-title">材料タグ一覧</h1>
+</div>
+
+<div class="row col-md-6 mt-3">
 <table class="table table-sm">
   <thead class="thead-light">
-    <tr align="center">
+    <tr>
     <th style="width: 40%">タグ名</th>
     <th style="width: 40%">タグ付け数</th>
     <th style="width: 20%"></th>
@@ -20,4 +23,6 @@
   </tbody>
     <% end %>
 </table>
+<%= paginate @tags %>
+</div>
 </div>
