@@ -10,18 +10,18 @@
     </tr>
        <tr>
       <td>
+
         <%= link_to user_followings_path(user.id) do %>
         <%= "#{user.followings.count}" %>following
         <% end %>
-      </td>
-      <td>
-        <%= link_to user_followers_path(user.id) do %>
+        <%= link_to user_followers_path(user.id), class:"ml-3" do %>
         <%= "#{user.followers.count}" %>follower
         <% end %>
+
       </td>
     </tr>
     <tr>
-      <td>favorite</br>
+      <td>Favorite</br>
       <%= user.favorite_genre_name(user) %></td>
     </tr>
     <tr>
@@ -31,18 +31,29 @@
 
   </tbody>
 </table>
+
+<div class="text-center">
   <% if user == current_user %>
-  <%= link_to "プロフィール編集", edit_user_path(user.id) %>
+  <%= link_to edit_user_path(user.id) do %>
+  <i class="fa-solid fa-user-pen"></i>edit
+  <% end %>
+
   <% else %>
   <%= render "public/follow_btn", user: user%>
   <% end %>
-
-
-<%=link_to "夕食投稿一覧を見る", user_path(user.id) %>
+  <%=link_to "夕食投稿一覧", user_path(user.id), class:"btn btn-info ml-3" %>
 </div>
 
+</div>
+
+<h5 class="text-center mt-3">Dinner total</h5>
+
+<div>
 <canvas id="genreChart"></canvas>
 <canvas id="dinnerStyle"></canvas>
+</div>
+
+<!--グラフ用-->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
 var ctx = document.getElementById("genreChart")

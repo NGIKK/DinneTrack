@@ -1,6 +1,13 @@
+<div class="container">
+
+<div class="row mt-2">
+<h1 class="public__page-title">Mypage</h1>
 <%= render "layouts/error", obj: @meal_record%>
-<div class="main-content">
-<div class="sidebar">
+</div>
+
+<div class="row mt-3 d-flex">
+
+<div class="sidebar col-md-3">
 <%= render "public/user_info", user: @user  %>
 </div>
 
@@ -14,7 +21,7 @@
 <p>ジャンルをお気に入り登録すると、登録ジャンルの投稿をおすすめ表示します。</p>
 <% end %>
 
-<div class="right-content">
+<div class="right-content col-md-9">
   <i class="fa-solid fa-marker" id="new-btn">食事記録</i>
   <div id ="meal-form" style="display: none;">
     <i class="fa-solid fa-square-xmark" id="close-btn"></i>
@@ -43,9 +50,12 @@
     <%= f.submit "登録"%>
     <% end %>
   </div>
+
+  <!--食事記録-->
 <%= month_calendar(attribute: :track_date, events: @meal_records) do |date, meal_records| %>
   <%= date %>
    <% meal_records.each do |meal_record| %>
+
    <div>
       <i class="fa-regular fa-file-lines record-icon"></i>
       <div style="display: none;" class="meal-record">
@@ -53,10 +63,12 @@
         <%= meal_record.track_date%>
       </div>
    </div>
+
+  <% end %>
 <% end %>
+
 </div>
-</div>
-<% end %>
+
 
 <!--食事記録投稿用-->
 <script>
