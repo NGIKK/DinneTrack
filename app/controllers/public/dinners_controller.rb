@@ -1,5 +1,6 @@
 class Public::DinnersController < ApplicationController
   def index
+    @user = current_user
     if params[:followings_dinner]
       @user = current_user
       @dinners = Dinner.where(user_id: @user.followings.ids).page(params[:page]).per(8).order(created_at: :desc)
