@@ -33,7 +33,7 @@ class User < ApplicationRecord
   # アップロード画像を基準点を真ん中にして、cropの引数のサイズに切り取る
   def get_profile_image(resize,crop)
     unless profile_image.attached?
-      file_path = Rails.root.join('app/assets/images/no_image2.jpeg')
+      file_path = Rails.root.join.asset_path('no_image2.jpeg')
       profile_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
     end
       profile_image.variant(resize:[resize], gravity: "center", crop: [crop] ).processed

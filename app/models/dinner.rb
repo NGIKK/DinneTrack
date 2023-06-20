@@ -39,7 +39,7 @@ class Dinner < ApplicationRecord
 
    def get_dinner_image(resize,crop)
     unless dinner_image.attached?
-      file_path = Rails.root.join('app/assets/images/no_image2.jpeg')
+      file_path = Rails.root.join.asset_path('no_image2.jpeg')
       dinner_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
     end
       dinner_image.variant(resize:[resize], gravity: "center", crop: [crop] ).processed
