@@ -1,6 +1,8 @@
 class Public::DinnersController < ApplicationController
+   before_action :authenticate_user!
+   before_action :ensure_correct_user, only: [:edit,:update]
+
   def index
-    if user_signed_in?
       @user = current_user
       if params[:followings_dinner]
         @user = current_user
@@ -9,9 +11,6 @@ class Public::DinnersController < ApplicationController
        @dinners = Dinner.all.page(params[:page]).per(8).order(created_at: :desc)
        @user = current_user
       end
-    else
-      redirect_to root_path
-    end
   end
 
   def new
@@ -31,6 +30,7 @@ class Public::DinnersController < ApplicationController
   def show
     @dinner = Dinner.find(params[:id])
     @comment = Comment.new
+    @user = @dinner.user
   end
 
   def edit
@@ -64,5 +64,12 @@ class Public::DinnersController < ApplicationController
     params.require(:dinner).permit(:dinner_image,:user_id,:genre_id,:title,:cost,:memo,:style,:is_posted,
                                    tags_attributes: [:id,:name],tag_ids: [])
   end
+
+  def ensure_correct_user
+    dinner = Dinner.find(params[:id])
+     unless dinner.user == current_user
+       redirect_to dinners_path
+     end
+   end
 
 end

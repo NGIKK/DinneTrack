@@ -23,6 +23,10 @@
     <% end %>
     <% end %>
 
+    <% if user_signed_in? %>
+    <%= render "public/new_dinner_btn"%>
+    <% end %>
+
     <%= flash[:notice]%>
     <%= yield %>
     </main>

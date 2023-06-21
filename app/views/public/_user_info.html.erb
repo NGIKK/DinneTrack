@@ -2,7 +2,7 @@
 <table class="table">
   <tbody>
     <tr>
-      <td><%= image_tag user.get_profile_image("200x200","100x100+0+0") %></td
+      <td align="center"><%= image_tag user.get_profile_image("150x150","150x150+0+0") %></td
     </tr>
     <tr>
       <td>username</br>
@@ -21,9 +21,18 @@
       </td>
     </tr>
     <tr>
-      <td>Favorite</br>
+      <td>Favorite genre</br>
       <%= user.favorite_genre_name(user) %></td>
     </tr>
+
+    <tr>
+      <td>
+      <%= link_to favorites_user_path(user.id) do%>
+      お気に入り一覧
+      <% end %>
+      </td>
+    </tr>
+
     <tr>
       <td>introduction</br>
       <%= user.introduction%></td>
@@ -36,12 +45,12 @@
   <% if user == current_user %>
   <%= link_to edit_user_path(user.id) do %>
   <i class="fa-solid fa-user-pen"></i>edit
+  <%=link_to "夕食投稿一覧", user_path(user.id), class:"btn btn-info ml-3" %>
   <% end %>
 
   <% else %>
   <%= render "public/follow_btn", user: user%>
   <% end %>
-  <%=link_to "夕食投稿一覧", user_path(user.id), class:"btn btn-info ml-3" %>
 </div>
 
 </div>
@@ -49,19 +58,32 @@
 <h5 class="text-center mt-3">Dinner total</h5>
 
 <div>
+<% if user.dinners.exists? %>
 <canvas id="genreChart"></canvas>
 <canvas id="dinnerStyle"></canvas>
+<% else %>
+<div class="text-center">
+<p>まだ投稿はありません</p>
+</div>
+<% end %>
 </div>
 
 <!--グラフ用-->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-var ctx = document.getElementById("genreChart")
+
 $(document).on('turbolinks:load', function() {
-  var genreChart = new Chart(ctx,{
+  var ctx = document.getElementById("genreChart");
+  var genreChart = Chart.getChart(ctx);
+
+  if (genreChart) {
+    genreChart.destroy();
+  }
+
+  genreChart = new Chart(ctx, {
     type: 'radar',
     data: {
-      labels: ['和食','洋食','中華','アジア・エスニック','その他'],
+      labels: ['和食', '洋食', '中華', ['アジア・', 'エスニック'], 'その他'],
       datasets: [{
         label: 'ジャンル別投稿数',
         data: <%= user.dinners.post_dinner_genre_count %>
@@ -69,28 +91,35 @@ $(document).on('turbolinks:load', function() {
     },
     options: {
       scales: {
-         r: {
-           suggestedMin: 0,
-           suggestedMax: 10,
-           stepSize: 2,
-          }
-     }
+        r: {
+          suggestedMin: 0,
+          suggestedMax: 10,
+          stepSize: 2,
+        }
+      }
     }
   });
- });
+});
 
- var ctxx = document.getElementById("dinnerStyle")
- $(document).on('turbolinks:load', function() {
-  var genreChart = new Chart(ctxx,{
+
+$(document).on('turbolinks:load', function() {
+  var ctxx = document.getElementById("dinnerStyle");
+  var styleChart = Chart.getChart(ctxx);
+
+  if (styleChart) {
+    styleChart.destroy();
+  }
+
+  styleChart = new Chart(ctxx, {
     type: 'doughnut',
     data: {
-      labels: ['外食','中食','内食'],
+      labels: ['外食', '中食', '内食'],
       datasets: [{
         label: 'ジャンル別投稿数',
         data: <%= user.dinners.post_dinner_style_count %>
       }]
     }
   });
- });
+});
 
 </script>

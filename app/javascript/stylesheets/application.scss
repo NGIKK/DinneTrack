@@ -85,3 +85,28 @@ main {
 .fa-user-pen{
   font-size: 1.5em;
 }
+
+.new-dinner-btn {
+  width: 90px;
+  padding: 2px;
+  color: #fff;
+  background-color: #ffa500;
+  border-bottom: 5px solid #b84c00;
+  border-radius: 10px;
+  position: fixed;
+  top: 90px;
+  right: 0;
+  z-index: 99;
+}
+
+.new-dinner-btn a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.new-dinner-btn:hover {
+  margin-top: 3px;
+  color: #fff;
+  background: #ffa500;
+  border-bottom: 2px solid #b84c00;
+}

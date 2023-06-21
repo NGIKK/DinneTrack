@@ -1,5 +1,17 @@
-<h1>Public::Searches#result</h1>
+<div class="container">
 
-<% @album_dinners.each do |album_dinner| %>
-<%= album_dinner.title %>
+<div class="row mt-2">
+<h1 class="public__page-title">Search</h1>
+<div class="d-flex align-items-end ml-3">
+
+</div>
+</div>
+
+<div class="col-md-12 mt-3">
+検索タグ ( <%= params[:tags] %> )
+<% if @album_dinners.exists? %>
+<%=render "public/dinner_index", dinners: @album_dinners %>
+<% else %>
+<p>検索結果はありません</p>
 <% end %>
+</div>

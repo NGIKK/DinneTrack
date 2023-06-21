@@ -1,5 +1,6 @@
 class Public::MealRecordsController < ApplicationController
-
+ before_action :authenticate_user!
+ 
   def create
     meal_record = MealRecord.new(meal_record_params)
     meal_record.user_id = current_user.id

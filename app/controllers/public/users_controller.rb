@@ -1,6 +1,8 @@
 class Public::UsersController < ApplicationController
  before_action :ensure_guest_user, only: [:edit]
  before_action :set_user_search, only: [:index,:search]
+ before_action :authenticate_user!
+ before_action :ensure_correct_user, only: [:edit,:update]
 
   def index
     @q = User.ransack(params[:q])
@@ -9,7 +11,7 @@ class Public::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @dinners = Dinner.where(user_id: @user.id)
+    @dinners = Dinner.where(user_id: @user.id).order(created_at: :desc)
   end
 
   def edit
@@ -56,4 +58,11 @@ end
 
   def set_user_search
     @user_search = User.ransack(params[:user_search])
+  end
+
+  def ensure_correct_user
+    user = User.find(params[:id])
+    unless user == current_user
+      redirect_to mypage_users_path
+    end
   end

@@ -1,9 +1,15 @@
-<h1>Dinner Album</h1>
-<div class="main-content">
-<div class="sidebar">
-<%= render "public/user_info", user: @user  %>
+<div class="container">
+
+<div class="row mt-2">
+<h1 class="public__page-title">Dinner Album</h1>
+<div class="d-flex align-items-end ml-3">
+<p>みんなの一推し投稿</p>
 </div>
+</div>
+
+<div class="col-md-12 mt-3">
 
 <div class="right-content">
 <%=render "public/dinner_index", dinners: @dinners %>
 </div>
+
