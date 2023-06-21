@@ -11,11 +11,11 @@ Admin.create!(
    password: 'ad739y11'
 )
 
-# Genre.create!(
-#   [{name: "和食"},
-#     {name: "洋食"},
-#     {name: "中華"},
-#     {name: "アジア・エスニック"},
-#     {name: "その他"}
-#   ]
-#   )
+Genre.create!(
+  [{name: "和食"},
+    {name: "洋食"},
+    {name: "中華"},
+    {name: "アジア・エスニック"},
+    {name: "その他"}
+  ]
+  )
