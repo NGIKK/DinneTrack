@@ -1,8 +1,16 @@
-<div class="main-content">
-<div class="sidebar">
+<div class="container">
+
+<div class="row mt-2">
+<h1 class="public__page-title"><%= @user.name %>'s Favorites</h1>
+</div>
+
+<div class="row mt-3 justify-content-between">
+
+<div class="sidebar col-md-3 mb-3">
 <%= render "public/user_info", user: @user  %>
 </div>
 
-<div class="right-content">
+<div class="right-content col-md-9">
 <%=render "public/dinner_index", dinners: @dinners %>
+</div>
 </div>

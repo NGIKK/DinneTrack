@@ -11,61 +11,131 @@
 <%= render "public/user_info", user: @user  %>
 </div>
 
-<% unless @user.genre_id == nil %>
-<% @recommendations.each do |recommendation| %>
-<%= link_to dinner_path(recommendation.id) do%>
-<%= recommendation.title %>
-<% end %>
-<% end %>
-<% else %>
-<p>ジャンルをお気に入り登録すると、登録ジャンルの投稿をおすすめ表示します。</p>
-<% end %>
 
 <div class="right-content col-md-9">
+
+  <div>
+    <% unless @user.genre_id == nil %>
+    <span><i class="fa-solid fa-check"></i>おすすめを見る</span>
+    <% @recommendations.each do |recommendation| %>
+    <span class="recommendation">
+    <%= link_to dinner_path(recommendation.id) do %>
+    <%= recommendation.title %>
+    <% end %>
+    </span>
+    <% end %>
+    <% else %>
+    <p>ジャンルをお気に入り登録すると、登録ジャンルの投稿をおすすめ表示します。</p>
+    <% end %>
+ </div>
+
+<!--食事記録投稿フォーム-->
+<div class="mt-3">
   <i class="fa-solid fa-marker" id="new-btn">食事記録</i>
+  <div id = "modal-mask">
   <div id ="meal-form" style="display: none;">
     <i class="fa-solid fa-square-xmark" id="close-btn"></i>
     <%= form_with model:[@user,@meal_record], url: user_meal_records_path(@user.id), method: :post do |f| %>
-    <%= f.date_field :track_date %></br>
-    <%= f.label :breakfast_memo %>
-    <%= f.text_field :breakfast_memo %></br>
-    <%= f.label :breakfast_cost %>
-    <%= f.text_field :breakfast_cost %></br>
-    <%= f.label :lunch_memo %>
-    <%= f.text_field :lunch_memo %></br>
-    <%= f.label :lunch_cost %>
-    <%= f.text_field :lunch_cost %></br>
-    <%= f.label :dinner_memo %>
-    <%= f.text_field :dinner_memo %></br>
-    <%= f.label :dinner_cost %>
-    <%= f.text_field :dinner_cost %></br>
-    <%= f.label :snack_memo %>
-    <%= f.text_field :snack_memo %></br>
-    <%= f.label :snack_cost %>
-    <%= f.text_field :snack_cost %></br>
-    <%= f.label :something_memo %>
-    <%= f.text_field :something_memo %></br>
-    <%= f.label :something_cost %>
-    <%= f.text_field :something_cost %></br>
-    <%= f.submit "登録"%>
+
+    <table class="d-flex justify-content-center">
+      <thead>
+        <tr>
+          <th style="width: 70%"></th>
+          <th style="width: 30%"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+        <td><%= f.date_field :track_date, class: "mb-2" %></td>
+        </tr>
+
+        <tr>
+          <td colspan="2">Breakfast</td>
+        </tr>
+        <tr>
+          <td><%= f.text_field :breakfast_memo,placeholder: "メモ",class: "mr-2" %></td>
+          <td>&yen;<%= f.text_field :breakfast_cost, size: 8 %></td>
+        </tr>
+
+        <tr>
+          <td colspan="2">Lunch</td>
+        </tr>
+        <tr>
+          <td><%= f.text_field :lunch_memo,placeholder: "メモ",class: "mr-2" %></td>
+          <td>&yen;<%= f.text_field :lunch_cost, size: 8 %></td>
+        </tr>
+
+        <tr>
+          <td colspan="2">Dinner</td>
+        </tr>
+        <tr>
+          <td><%= f.text_field :dinner_memo,placeholder: "メモ",class: "mr-2" %></td>
+          <td>&yen;<%= f.text_field :dinner_cost, size: 8 %></td>
+        </tr>
+
+        <tr>
+          <td colspan="2">Snack</td>
+        </tr>
+        <tr>
+          <td><%= f.text_field :snack_memo,placeholder: "メモ",class: "mr-2" %></td>
+          <td>&yen;<%= f.text_field :snack_cost, size: 8 %></td>
+        </tr>
+
+        <tr>
+          <td colspan="2">Any other</td>
+        </tr>
+
+        <tr>
+          <td><%= f.text_field :something_memo,placeholder: "メモ",class:"mr-2" %></td>
+          <td>&yen;<%= f.text_field :something_cost, size: 8%></td>
+        </tr>
+
+      </tbody>
+    </table>
+    <div class="text-right"><%= f.submit "登録", class:"btn-sm btn-outline-success mt-3 mr-2"%></div>
     <% end %>
   </div>
+</div>
+</div>
+<!--ここまで-->
 
-  <!--食事記録-->
+<!--食事記録カレンダー-->
 <%= month_calendar(attribute: :track_date, events: @meal_records) do |date, meal_records| %>
   <%= date %>
    <% meal_records.each do |meal_record| %>
 
    <div>
       <i class="fa-regular fa-file-lines record-icon"></i>
+      Total: &yen;<%= meal_record.daily_total_cost%>
       <div style="display: none;" class="meal-record">
         <i class="fa-solid fa-square-xmark record-close-btn"></i>
-        <%= meal_record.track_date%>
+         Total: &yen;<%= meal_record.daily_total_cost%>
       </div>
    </div>
 
   <% end %>
 <% end %>
+<!--ここまで-->
+<div class="mt-5">
+  <h4>３ヶ月間の食費合計</h4>
+<table class="table table-bordered">
+  <thead>
+    <tr align="center">
+      <th style="width: 33%">先々月</th>
+      <th style="width: 33%">先月</th>
+      <th style="width: 33%">今月</th>
+    </tr>
+  </thead>
+   <tbody>
+     <tr>
+     <td align="end">&yen;<%= @user.monthly_total_cost(2) %></td>
+     <td align="end">&yen;<%= @user.monthly_total_cost(1) %></td>
+     <td align="end">&yen;<%= @user.monthly_total_cost(0) %></td>
+     </tr>
+   </tbody>
+</table>
+</div>
 
 </div>
 
@@ -75,13 +145,16 @@
 var newBtn = document.getElementById('new-btn');
 var mealForm = document.getElementById('meal-form');
 var closeBtn = document.getElementById('close-btn');
+var modalMask = document.getElementById('modal-mask');
 
 newBtn.addEventListener('click', function() {
   mealForm.style.display = 'block';
+  modalMask.style.display = 'block';
 });
 
 closeBtn.addEventListener('click', function() {
   mealForm.style.display = 'none';
+  modalMask.style.display = 'none';
 });
 
 var recordIcons = document.getElementsByClassName('record-icon');

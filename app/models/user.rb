@@ -64,4 +64,14 @@ class User < ApplicationRecord
     ["name"]
   end
 
+# 食事記録の月間コスト合計
+ def monthly_total_cost(month)
+    start_of_month = Date.today.months_ago(month).beginning_of_month
+    end_of_month = start_of_month.end_of_month
+    month_costs = MealRecord.where(user_id: self.id, track_date: start_of_month..end_of_month).pluck(:breakfast_cost, :lunch_cost, :dinner_cost,
+                                           :snack_cost, :something_cost)
+    # 二次元配列を一次元配列に変換してから合計
+    total_cost = month_costs.flatten.sum.to_s(:delimited)
+  end
+
 end

@@ -1,15 +1,89 @@
-<h1>投稿一覧</h1>
+<div class="container">
 
-<%= link_to "フォローユーザーの投稿に切り替え", dinners_path(followings_dinner: true)%>
-<%= link_to "全投稿表示", dinners_path %>
-<div class="main-content">
-<div class="sidebar">
+<div class="row mt-2">
+<h1 class="public__page-title">投稿一覧</h1>
+</div>
+
+<div class="row mt-3 d-flex">
+
+<div class="sidebar col-md-3 mb-3 ">
 <%= render "public/user_info", user: @user  %>
 </div>
 
-<div class="right-content">
-<%=render "public/dinner_index", dinners: @dinners %>
+<div class="col-md-2"></div>
+
+<div class="dinner-detail col-md-6 ">
+
+<div class="text-right mb-3">
+<%= link_to "フォローユーザーの投稿", dinners_path(followings_dinner: true)%> |
+<%= link_to "全投稿表示", dinners_path %>
 </div>
+
+
+<% @dinners.each do |dinner| %>
+
+<div class="dinner-detail__card card-skin">
+
+<div class="dinner-detail__auther">
+<%= image_tag dinner.user.get_profile_image("50x50","40x40+0+0")%>
+<%= link_to user_path(dinner.user.id) do %>
+<%= dinner.user.name %>
+<% end %>
+</div>
+
+
+<div class="dinner-detail__card--image">
+<%= image_tag dinner.get_dinner_image("200x200","200x200+0+0")%>
+</div>
+
+<div class="dinner-detail__card--text">
+
+<div class="dinner-detail__card--text--date">
+<%= l dinner.created_at %>
+</div>
+
+<div class="dinner-detail__card--text--title">
+<%= link_to dinner_path(dinner.id) do %>
+<strong><%= dinner.title %></strong>
+<% end %>
+</div>
+
+<div class="dinner-detail__card--text--sentence">
+&yen;<%= dinner.cost %>
+</div>
+
+<div class="dinner-detail__card--text--sentence">
+ 材料:
+ <% dinner.tags.each do |tag| %>
+ <%= tag.name %>
+ <% end %>
+</div>
+
+<div class="dinner-detail__card--text--sentence">
+<%= dinner.memo %>
+</div>
+
+<div class="dinner-detail__card--text--sentence">
+<span><%= render "public/favorite_btn", dinner: dinner %></span>
+<span><i class="fa-regular fa-message"></i><%= dinner.comments.count%></span>
+<span><i class="fa-solid fa-book-open"></i><%= dinner.dinner_is_posted %></span>
+<span class="dinner-detail__card--text--genre"><%= dinner.genre.name %></span>
+</div>
+
+</div>
+
+</div>
+
+<div class="mt-1 mb-3 dinner-detail__card--btn">
+<% if current_user == dinner.user %>
+<%= link_to "edit", edit_dinner_path(dinner.id),class: "btn btn-sm btn-outline-success"%>
+<%= link_to "delete", dinner_path(dinner.id), method: :delete, class:"btn btn-sm btn-outline-danger ml-2"%>
+<% end %>
+</div>
+
+<% end %>
+</div>
+
 
 </div>
 </div>
