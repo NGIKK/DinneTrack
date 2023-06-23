@@ -10,4 +10,5 @@
      <%= f.submit "検索" %>
      <% end %>
   <%= render "public/user_index", users: @users %>
+  <div class="d-flex justify-content-center mt-2"><%= paginate @users %></div>
  </div>

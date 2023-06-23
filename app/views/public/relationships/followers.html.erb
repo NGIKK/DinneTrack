@@ -6,6 +6,7 @@
 
  <div class="row col-md-10 mt-3">
  <%= render "public/user_index", users: @followers %>
+ <div class="d-flex justify-content-center mt-2"><%= paginate @followers %></div>
  </div>
 
 </div>

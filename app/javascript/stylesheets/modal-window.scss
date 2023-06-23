@@ -4,14 +4,14 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.6);
   z-index: 100;
   display: none;
 }
 
 #meal-form {
   position: fixed;
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 255, 255, 1);
   padding: 10px 15px;
   width: auto;
   height: auto;
@@ -26,4 +26,38 @@
 
 #close-btn {
   font-size: 1.5em;
+}
+
+.meal-record {
+  position: fixed;
+  background-color: rgba(255, 248, 220, 0.9);
+  padding: 10px 15px;
+  width: 280px;
+  height: auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  display: none;
+}
+
+.record-close-btn {
+  font-size: 1.5em;
+}
+
+i.fa-solid.fa-marker {
+  color: #fff;
+  background: #bdb76b;
+  padding: 5px;
+  border-radius: 10px;
+  border-bottom: 5px solid #808000;
+}
+
+i.fa-solid.fa-marker:hover {
+  margin-top: 3px;
+  color: #fff;
+  background: #bdb76b;
+  border-bottom: 2px solid #808000;
 }

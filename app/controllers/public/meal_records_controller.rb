@@ -1,6 +1,6 @@
 class Public::MealRecordsController < ApplicationController
  before_action :authenticate_user!
- 
+
   def create
     meal_record = MealRecord.new(meal_record_params)
     meal_record.user_id = current_user.id
@@ -10,6 +10,7 @@ class Public::MealRecordsController < ApplicationController
       @user = current_user
       @meal_record = MealRecord.new(meal_record_params)
       @meal_records = MealRecord.all
+      @recommendations = Dinner.where(genre_id: @user.genre_id).sample(3)
       render template: "public/users/mypage"
     end
   end
@@ -21,6 +22,7 @@ class Public::MealRecordsController < ApplicationController
     else
       @meal_record = MealRecord.new(meal_record_params)
       @meal_records = MealRecord.all
+      @recommendations = Dinner.where(genre_id: @user.genre_id).sample(3)
       render template: "public/users/mypage"
     end
   end
@@ -28,7 +30,7 @@ class Public::MealRecordsController < ApplicationController
   def destroy
     meal_record = MealRecord.find(params[:id])
     meal_record.destroy
-    redirect_to user_mypage_path
+    redirect_to mypage_users_path, notice: "食事記録を削除しました"
   end
 
 end

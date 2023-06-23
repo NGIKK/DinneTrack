@@ -6,9 +6,9 @@ class Public::DinnersController < ApplicationController
       @user = current_user
       if params[:followings_dinner]
         @user = current_user
-        @dinners = Dinner.where(user_id: @user.followings.ids).page(params[:page]).per(8).order(created_at: :desc)
+        @dinners = Dinner.where(user_id: @user.followings.ids).page(params[:page]).per(5).order(created_at: :desc)
       else
-       @dinners = Dinner.all.page(params[:page]).per(8).order(created_at: :desc)
+       @dinners = Dinner.all.page(params[:page]).per(4).order(created_at: :desc)
        @user = current_user
       end
   end
@@ -55,7 +55,7 @@ class Public::DinnersController < ApplicationController
 
   def album
     @user = current_user
-    @dinners = Dinner.where(is_posted: true)
+    @dinners = Dinner.where(is_posted: true).page(params[:page]).per(8)
   end
 
   private

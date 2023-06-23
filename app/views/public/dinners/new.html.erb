@@ -1,60 +1,78 @@
-<h1>あなたの夕食を共有しましょう</h1>
+<div class="container">
+
+<div class="row mt-2">
+ <h1 class="public__page-title">あなたの夕食をシェアしましょう</h1>
+</div>
 
 <div class="dinner">
 
 <div class="dinner__form">
  <%= form_with model: @dinner, url: dinners_path, local: true, method: :post do |f| %>
 
- <div>
-  <%= f.label :dinner_image,"image" %>
-  <%= f.file_field :dinner_image, accept: "image/*" %>
- </div>
+<div class="col-md-7">
+<table>
+  <thead>
+    <tr>
+      <th style="width: 25%;"></th>
+      <th style="width: 75%;"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="mb-2">
+      <td><%= f.label :dinner_image,"Image" %></td>
+      <td><%= f.file_field :dinner_image, accept: "image/*" %></td>
+    </tr>
 
- <div>
- <%= f.label :title, "Title" %>
- <%= f.text_field :title, placeholder: "タイトル", autofocus: true %>
- </div>
+    <tr>
+      <td><%= f.label :title, "Title" %></td>
+      <td><%= f.text_field :title, placeholder: "タイトル", autofocus: true, class: "form-control" %></td>
+    </tr>
 
- <div>
- <%= f.label :genre_id, "Genre" %>
- <%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "-- 選択してください --" %>
- </div>
+    <tr>
+      <td><%= f.label :genre_id, "Genre" %></td>
+      <td><%= f.collection_select :genre_id, Genre.all, :id, :name, {include_blank: "-- 選択してください --"}, class: "form-select"%></td>
+    </tr>
 
- <div>
- <%= f.label :cost, "COST" %>
- <!--一番大きい位1~9、以降の位0~9の半角数字のみ許可-->
- &yen;<%= f.text_field :cost, pattern:"^[1-9][0-9]*$",autofocus: true %>
- </div>
+    <tr>
+      <td><%= f.label :cost, "Cost" %></td>
+       <!--一番大きい位1~9、以降の位0~9の半角数字のみ許可-->
+      <td><%= f.text_field :cost, pattern:"^[1-9][0-9]*$",autofocus: true, class: "form-control" %></td>
+    </tr>
 
- <div>
- <%= f.label :memo, "MEMO" %>
- <%= f.text_area :memo, placeholder: "レシピや参考URLを入力してください",autofocus: true %>
- </div>
+    <tr>
+      <td><%= f.label :memo, "Memo", class: "form-label"%></td>
+      <td><%= f.text_area :memo, placeholder: "レシピや参考URL、コメント",autofocus: true, class: "form-control" %></td>
+    </tr>
 
- <div>
-   <%= f.radio_button :style, :eating_out%>
-   <%= f.label :style, "外食" %>
-   <%= f.radio_button :style, :taking_in%>
-   <%= f.label :style, "中食" %>
-   <%= f.radio_button :style, :home_cooking%>
-   <%= f.label :style, "内食" %>
- </div>
+    <tr>
+      <td>Style</td>
+      <td><%= f.radio_button :style, :eating_out%>
+          <%= f.label :style, "外食" %>
+          <%= f.radio_button :style, :taking_in%>
+          <%= f.label :style, "中食" %>
+          <%= f.radio_button :style, :home_cooking%>
+          <%= f.label :style, "内食" %></td>
+    </tr>
+    <tr>
+      <td><%= f.label :is_posted,"一推し登録"%></td>
+      <td><%= f.check_box :is_posted, id: :dinner_is_posted, :as => :boolean%></td>
+    </tr>
 
- <div>
-   <%= f.label :is_posted,"アルバムに登録" %>
-   <%= f.check_box :is_posted, id: :dinner_is_posted, :as => :boolean %>
- </div>
+  </tbody>
+</table>
 
- <div class="tag-form">
+<div class="mt-3">
+ <p>材料をタグ登録</p>
+ <div class="tag-form form-inline">
   <span>
     <%# 文字を入力するためだけのフィールド。入力された値は送信する必要がないので、nameの指定はしていない。%>
-    <%= text_field_tag nil, nil, {class: "tag-field"} %>
+    <%= text_field_tag nil, nil, {class: "tag-field form-control"} %>
   </span>
-  <span class="add-tag">追加</span>
+  <span class="add-tag btn btn-sm btn-info ml-2">追加</span>
   </div>
+</div>
 
- <%= f.submit "投稿する"%>
-
+ <%= f.submit "投稿する", class: "btn btn-success mt-3"%>
   <% end %>
 </div>
 </div>

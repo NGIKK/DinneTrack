@@ -11,7 +11,7 @@ class Public::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @dinners = Dinner.where(user_id: @user.id).order(created_at: :desc)
+    @dinners = Dinner.where(user_id: @user.id).order(created_at: :desc).page(params[:page]).per(6)
   end
 
   def edit
@@ -38,7 +38,7 @@ class Public::UsersController < ApplicationController
   def favorites
    @user = User.find(params[:id])
    favorites = Favorite.where(user_id: @user.id).pluck(:dinner_id)
-   @dinners = Dinner.find(favorites)
+   @dinners = Dinner.where(id: favorites).page(params[:page]).per(6)
   end
 
 end
@@ -63,6 +63,6 @@ end
   def ensure_correct_user
     user = User.find(params[:id])
     unless user == current_user
-      redirect_to mypage_users_path
+      redirect_to mypage_users_path(current_user)
     end
   end

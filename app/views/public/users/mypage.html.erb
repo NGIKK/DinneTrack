@@ -29,7 +29,7 @@
     <% end %>
  </div>
 
-<!--食事記録投稿フォーム-->
+<!--食事記録投稿フォーム モーダル画面-->
 <div class="mt-3">
   <i class="fa-solid fa-marker" id="new-btn">食事記録</i>
   <div id = "modal-mask">
@@ -101,24 +101,82 @@
 <!--ここまで-->
 
 <!--食事記録カレンダー-->
+<div class="mt-2">
 <%= month_calendar(attribute: :track_date, events: @meal_records) do |date, meal_records| %>
-  <%= date %>
+  <%= date.day %>
    <% meal_records.each do |meal_record| %>
-
    <div>
       <i class="fa-regular fa-file-lines record-icon"></i>
       Total: &yen;<%= meal_record.daily_total_cost%>
+
+      <!--モーダル画面-->
       <div style="display: none;" class="meal-record">
-        <i class="fa-solid fa-square-xmark record-close-btn"></i>
-         Total: &yen;<%= meal_record.daily_total_cost%>
+      <i class="fa-solid fa-square-xmark record-close-btn"></i>
+    <table>
+      <tbody>
+        <tr>
+        <td colspan="2"><%= l meal_record.track_date, format: :short  %></td>
+        </tr>
+
+        <tr>
+          <td colspan="2">Breakfast</td>
+        </tr>
+        <tr>
+          <td><%= meal_record.breakfast_memo %></td>
+          <td>&yen;<%= meal_record.breakfast_cost %></td>
+        </tr>
+
+        <tr>
+          <td colspan="2">Lunch</td>
+        </tr>
+        <tr>
+          <td><%= meal_record.lunch_memo %></td>
+          <td>&yen;<%= meal_record.lunch_cost %></td>
+        </tr>
+
+        <tr>
+          <td colspan="2">Dinner</td>
+        </tr>
+        <tr>
+          <td><%= meal_record.dinner_memo %></td>
+          <td>&yen;<%= meal_record.dinner_cost %></td>
+        </tr>
+
+        <tr>
+          <td colspan="2">Snack</td>
+        </tr>
+        <tr>
+          <td><%= meal_record.snack_memo %></td>
+          <td>&yen;<%= meal_record.snack_cost %></td>
+        </tr>
+
+        <tr>
+          <td colspan="2">Any other</td>
+        </tr>
+
+        <tr>
+          <td><%= meal_record.something_memo %></td>
+          <td>&yen;<%= meal_record.something_cost %></td>
+        </tr>
+
+      </tbody>
+    </table>
+          <div class="text-right mt-2">
+          <%= link_to "Delete", user_meal_record_path(current_user,meal_record.id), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-sm btn-danger" %>
+          </div>
       </div>
    </div>
 
-  <% end %>
 <% end %>
+<% end %>
+</div>
+
+
+
+
 <!--ここまで-->
 <div class="mt-5">
-  <h4>３ヶ月間の食費合計</h4>
+  <h4>３ヶ月間の食費</h4>
 <table class="table table-bordered">
   <thead>
     <tr align="center">
