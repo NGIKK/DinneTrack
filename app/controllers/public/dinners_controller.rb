@@ -50,7 +50,7 @@ class Public::DinnersController < ApplicationController
   def destroy
     dinner = Dinner.find(params[:id])
     dinner.destroy
-    redirect_to dinners_path
+    redirect_to user_path(current_user.id)
   end
 
   def album

@@ -37,7 +37,7 @@
 </div>
 
 <div class="dinner-detail__card--text--sentence">
-&yen;<%= @dinner.cost %>
+&yen;<%= @dinner.cost.to_s(:delimited) %>
 </div>
 
 <div class="dinner-detail__card--text--sentence">
@@ -82,7 +82,7 @@
  <% end %>
  <span class="dinner-detail__comment"><%= comment.body %></span>
  <%if comment.user == current_user %>
- <%= link_to "削除", dinner_comment_path(comment.dinner_id,comment.id), method: :delete, class:"btn btn-danger btn-sm" %>
+ <%= link_to "削除", dinner_comment_path(comment.dinner_id,comment.id), method: :delete, data: { confirm: "本当に削除しますか？" }, class:"btn btn-danger btn-sm" %>
  <% end %>
  <% end %>
   </row>

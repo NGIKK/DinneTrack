@@ -1,5 +1,10 @@
-<h2>Sign up</h2>
+<div class="container">
 
+<div class="row mt-2">
+<h1 class="public__page-title">新規ユーザ登録</h1>
+</div>
+
+<div class="row col-md-5">
 <%= form_with model: @user,url: user_registration_path do |f| %>
   <%= render "public/shared/error_messages", resource: resource %>
 
@@ -21,7 +26,7 @@
   <div class="field">
     <%= f.label :password,"パスワード" %>
     <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <em>(<%= @minimum_password_length %> 文字以上)</em>
     <% end %><br />
     <%= f.password_field :password, autocomplete: "new-password" %>
   </div>
@@ -32,8 +37,9 @@
   </div>
 
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.submit "新規登録", class: "btn btn-success mt-3" %>
   </div>
 <% end %>
 
-<%= render "public/shared/links" %>
+</div>
+

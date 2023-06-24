@@ -11,21 +11,22 @@ class Public::MealRecordsController < ApplicationController
       @meal_record = MealRecord.new(meal_record_params)
       @meal_records = MealRecord.all
       @recommendations = Dinner.where(genre_id: @user.genre_id).sample(3)
-      render template: "public/users/mypage"
+      # render template: "public/users/mypage"
+      redirect_to request.referer
     end
   end
 
-  def update
-      meal_record = MealRecord.find(params[:id])
-    if meal_record.update(meal_record_params)
-      redirect_to user_mypage_path
-    else
-      @meal_record = MealRecord.new(meal_record_params)
-      @meal_records = MealRecord.all
-      @recommendations = Dinner.where(genre_id: @user.genre_id).sample(3)
-      render template: "public/users/mypage"
-    end
-  end
+  # def update
+  #     meal_record = MealRecord.find(params[:id])
+  #   if meal_record.update(meal_record_params)
+  #     redirect_to user_mypage_path
+  #   else
+  #     @meal_record = MealRecord.new(meal_record_params)
+  #     @meal_records = MealRecord.all
+  #     @recommendations = Dinner.where(genre_id: @user.genre_id).sample(3)
+  #     render template: "public/users/mypage"
+  #   end
+  # end
 
   def destroy
     meal_record = MealRecord.find(params[:id])

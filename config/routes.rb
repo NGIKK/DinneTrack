@@ -32,7 +32,7 @@ Rails.application.routes.draw do
       resource :relationships, only: [:create,:destroy]
       get "followings" => "relationships#followings", as: "followings"
       get "followers" => "relationships#followers", as: "followers"
-      resources :meal_records, only: [:new,:create,:edit,:update,:destroy]
+      resources :meal_records, only: [:new,:create,:destroy]
       member do
         get "favorites" => "users#favorites"
       end

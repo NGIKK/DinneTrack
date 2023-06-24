@@ -45,12 +45,12 @@
   <% if user == current_user %>
   <%= link_to edit_user_path(user.id) do %>
   <i class="fa-solid fa-user-pen"></i>edit
-  <%=link_to "夕食投稿一覧", user_path(user.id), class:"btn btn-info ml-3" %>
   <% end %>
 
   <% else %>
   <%= render "public/follow_btn", user: user%>
   <% end %>
+  <%=link_to "夕食投稿一覧", user_path(user.id), class:"btn btn-info ml-3" %>
 </div>
 
 </div>

@@ -72,6 +72,6 @@ class User < ApplicationRecord
                                            :snack_cost, :something_cost)
     # 二次元配列を一次元配列に変換してから合計
     total_cost = month_costs.flatten.sum.to_s(:delimited)
-  end
+ end
 
 end
