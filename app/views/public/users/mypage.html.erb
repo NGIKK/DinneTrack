@@ -2,7 +2,6 @@
 
 <div class="row mt-2">
 <h1 class="public__page-title">Mypage</h1>
-<%= render "layouts/error", obj: @meal_record%>
 </div>
 
 <div class="row mt-3 d-flex">
@@ -35,7 +34,7 @@
   <div id = "modal-mask">
   <div id ="meal-form" style="display: none;">
     <i class="fa-solid fa-square-xmark" id="close-btn"></i>
-    <%= form_with model:[@user,@meal_record], url: user_meal_records_path(@user.id), method: :post do |f| %>
+    <%= form_with model:[@user,@meal_record], url: user_meal_records_path(@user.id),local: false, method: :post do |f| %>
 
     <table class="d-flex justify-content-center">
       <thead>

@@ -13,16 +13,19 @@
 </div>
 
 <div>
-  <h4><%=link_to "About more", about_path %></h4>
+  <%= link_to about_path do%>
+  <h4>About more</h4>
+  <p>-使い方、ご利用の注意点-</p>
+  <% end %>
 </div>
 <%=link_to "新規登録", new_user_registration_path, class:"btn btn-success" %>
 <%=link_to "ゲストログイン", users_guest_sign_in_path,method: :post, class:"btn btn-info" %>
 </div>
 
-<div class="top__introduction--info">
-  <p>プライバシーポリシー</p>
-  <p>利用規約</p>
-</div>
+<!--<div class="top__introduction--info">-->
+<!--  <p>プライバシーポリシー</p>-->
+<!--  <p>利用規約</p>-->
+<!--</div>-->
 
 </div>
 </div>

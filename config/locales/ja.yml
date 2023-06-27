@@ -1,65 +1,115 @@
-  ja:
-    enums:
+ja:
+  enums:
+    dinner:
+      style:
+        eating_out: "外食"
+        taking_in: "中食"
+        home_cooking: "内食"
+
+  simple_calendar:
+    previous: "<<"
+    next: ">>"
+
+  date:
+    abbr_day_names:
+      - 日
+      - 月
+      - 火
+      - 水
+      - 木
+      - 金
+      - 土
+    abbr_month_names:
+      -
+      - 1月
+      - 2月
+      - 3月
+      - 4月
+      - 5月
+      - 6月
+      - 7月
+      - 8月
+      - 9月
+      - 10月
+      - 11月
+      - 12月
+    day_names:
+      - 日曜日
+      - 月曜日
+      - 火曜日
+      - 水曜日
+      - 木曜日
+      - 金曜日
+      - 土曜日
+    formats:
+      default: "%Y/%m/%d"
+      long: "%Y年%m月%d日(%a)"
+      short: "%m/%d"
+    month_names:
+      -
+      - 1月
+      - 2月
+      - 3月
+      - 4月
+      - 5月
+      - 6月
+      - 7月
+      - 8月
+      - 9月
+      - 10月
+      - 11月
+      - 12月
+  time:
+    formats:
+      default: "%Y/%m/%d %H:%M:%S"
+      short: "%m/%d"
+
+  activerecord:
+    models:
+      dinner: 夕食
+      genre: ジャンル名
+      comment: コメント
+    attributes:
       dinner:
-        style:
-          eating_out: "外食"
-          taking_in: "中食"
-          home_cooking: "内食"
+        title: タイトル
+        cost: コスト
+        memo: メモ
+        style: スタイル
+        is_posted: 一推し登録
+        genre_id: ジャンル名
+      genre:
+        name: ジャンル名
+      comment:
+        body: コメント本文
 
-    simple_calendar:
-      previous: "<<"
-      next: ">>"
+  errors:
+    format: "%{attribute}%{message}"
+    messages:
+      blank: "が入力されていません"
+      taken: "は既に使用されています"
+      too_long: "が長すぎます（%{count}文字以下で入力してください）"
+      too_short: "が短すぎます（%{count}文字以上で入力してください）"
+      wrong_length: "の長さが正しくありません（%{count}文字で入力してください）"
+      not_a_number: "は数値ではありません"
+      not_an_integer: "は整数ではありません"
+      not_valid: "が無効です"
+      invalid: "が無効です"
+      invalid_date: "が無効な日付です"
+      invalid_time: "が無効な時間です"
+      before: "は%{date}より前の日付で入力してください"
+      after: "は%{date}より後の日付で入力してください"
+      wrong_period: "の期間が正しくありません"
 
-    date:
-      abbr_day_names:
-        - 日
-        - 月
-        - 火
-        - 水
-        - 木
-        - 金
-        - 土
-      abbr_month_names:
-        -
-        - 1月
-        - 2月
-        - 3月
-        - 4月
-        - 5月
-        - 6月
-        - 7月
-        - 8月
-        - 9月
-        - 10月
-        - 11月
-        - 12月
-      day_names:
-        - 日曜日
-        - 月曜日
-        - 火曜日
-        - 水曜日
-        - 木曜日
-        - 金曜日
-        - 土曜日
-      formats:
-        default: "%Y/%m/%d"
-        long: "%Y年%m月%d日(%a)"
-        short: "%m/%d"
-      month_names:
-        -
-        - 1月
-        - 2月
-        - 3月
-        - 4月
-        - 5月
-        - 6月
-        - 7月
-        - 8月
-        - 9月
-        - 10月
-        - 11月
-        - 12月
-    time:
-      formats:
-        default: "%Y/%m/%d %H:%M:%S"
-        short: "%m/%d"
+  activerecord:
+    errors:
+      models:
+        dinner:
+          attributes:
+            genre:
+              required: "は必須項目です"
+            title:
+              blank: "が入力されていません"
+            cost:
+              blank: "が入力されていません"
+            style:
+              inclusion: "が無効な値です"

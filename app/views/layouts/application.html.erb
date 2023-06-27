@@ -7,6 +7,7 @@
     <%= csp_meta_tag %>
 
    <script src="https://kit.fontawesome.com/f419bc8bff.js" crossorigin="anonymous"></script>
+   <meta name="viewport" content="width=device-width,initial-scale=1.0">
    <!--<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>-->
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -14,27 +15,29 @@
   </head>
 
   <body>
-    <%= render "layouts/header"%>
+    <header>
+      <%= render 'layouts/header' %>
+    </header>
+
     <main>
-
     <% if user_signed_in? %>
+    <div class="form-inline mt-2 ml-2">
+      <%= form_with url: search_path, method: :get do |f| %>
+      <%= f.text_field :tags, placeholder: "材料名 半角スペースで複数入力", size:"30", class: "form-control"%>
+      <%= button_tag type: "submit", class: "btn btn-default" do %>
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <% end %>
+      <% end %>
+    </div>
 
-  <div class="form-inline mt-2 ml-2">
-    <%= form_with url: search_path, method: :get do |f| %>
-    <%= f.text_field :tags, placeholder: "材料名 半角スペースで複数入力", size:"30", class: "form-control"%>
-    <%= button_tag type: "submit", class: "btn btn-default" do %>
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <% end %>
-    <% end %>
-  </div>
+      <%= render "public/new_dinner_btn"%>
+      <% end %>
 
-    <%= render "public/new_dinner_btn"%>
-
-    <% end %>
-
-    <%= flash[:notice]%>
-    <%= yield %>
+      <%= flash[:notice]%>
+      <%= yield %>
     </main>
+
     <%= render "layouts/footer"%>
+
   </body>
 </html>

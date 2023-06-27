@@ -75,7 +75,7 @@
         <%= comment.user.name %></br>
         <% end %>
       <span class="dinner-detail__comment"><%= comment.body %></span>
-        <%= link_to "削除", dinner_comment_path(comment.dinner_id,comment.id), method: :delete, data: { confirm: "本当に削除しますか？" }, class:"btn btn-danger btn-sm" %>
+        <%= link_to "削除", admin_dinner_comment_path(comment.dinner_id,comment.id), method: :delete, data: { confirm: "本当に削除しますか？" }, class:"btn btn-danger btn-sm" %>
         <% end %>
        </row>
     </table>

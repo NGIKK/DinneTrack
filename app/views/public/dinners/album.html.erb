@@ -1,17 +1,30 @@
 <div class="container">
 
 <div class="row mt-2">
-<h1 class="public__page-title">Dinner Album</h1>
-<div class="d-flex align-items-end ml-3">
-<p>みんなの一推し投稿</p>
-</div>
-</div>
-
-<div class="col-md-12 mt-3">
-
-<div class="right-content">
-<%=render "public/dinner_index", dinners: @dinners %>
+  <h1 class="public__page-title">Dinner Album</h1>
+  <div class="d-flex align-items-end ml-3">
+  <p>みんなの一推し投稿</p>
+  </div>
 </div>
 
-<div class="d-flex justify-content-center mt-2"><%= paginate @dinners %></div>
+<div class="row">
+<div class="col-md-2 mt-3">
+ <div class="card mb-3", style="max-width: 10rem;">
+ <div class="card-header", style="background-color: #bdb76b;">ジャンル検索</div>
+   <div class="card-body">
+     <% @genres.each do |genre| %>
+     <p><%= link_to "#{genre.name}",genre_search_path(genre), class: 'genre-search' %></p>
+     <% end %>
+   </div>
+ </div>
 </div>
+
+ <div class="col-md-10">
+  <div class="d-flex justify-content-center mx-auto">
+   <%=render "public/dinner_index", dinners: @dinners %>
+  </div>
+   <div class="d-flex justify-content-center mt-2"><%= paginate @dinners %></div>
+ </div>
+ </div>
+</div>
+

@@ -1,63 +1,93 @@
-<header class="header">
+<nav class="navbar navbar-expand-lg text-center pt-0 pb-0">
+  <div class="collapse navbar-collapse">
 
-  <div class="header__logo">
-    <%=link_to "rogo", root_path %>
-  </div>
+    <%if user_signed_in?%>
+    <div class="row d-flex justify-content-around align-items-center col-md-6 ms-5">
+      <div class="navbar navbar-brand">
+        <%=link_to root_path do %>
+        <%= image_tag 'logo_transparent.png', alt: "ロゴ", width: "100px" %>
+        <% end %>
+     <h6>Wellcome <%= current_user.name %></h6>
+     </div>
+    </div>
 
-  <div class="header__text">
-  <%if user_signed_in?%>
-  <h5>Wellcome <%= current_user.name %></h5>
-  <% elsif admin_signed_in? %>
-  <h5>管理者ログイン中</h5>
+   <% elsif admin_signed_in? %>
+   <div class="row d-flex justify-content-around align-items-center col-md-6 ms-5">
+      <div class="navbar navbar-brand">
+        <%=link_to root_path do %>
+        <%= image_tag 'logo_transparent.png', alt: "ロゴ", width: "100px" %>
+        <% end %>
+     <h6>管理者ログイン中</h6>
+     </div>
+    </div>
+
   <% else %>
+    <div class="row d-flex justify-content-around align-items-center col-md-6 ms-5">
+      <div class="navbar navbar-brand">
+        <%=link_to root_path do %>
+        <%= image_tag 'logo_transparent.png', alt: "ロゴ", width: "100px" %>
+        <% end %>
+      </div>
+    </div>
+
   <% end %>
   </div>
 
-    <ul class="header__list">
-    <%if user_signed_in?%>
-    <li class="header__list--li">
+  <div class="col-md-6">
+    <ul class="navbar-nav mx-auto justify-content-around">
+
+      <%if user_signed_in?%>
+
+      <li class="nav-item">
       <%= link_to users_path do %>
       <i class="fas fa-user-friends"></i> users
       <% end %>
-    </li>
-    <li class="header__list--li">
+      </li>
+
+      <li class="nav-item">
       <%= link_to album_dinners_path do %>
       <i class="fa-solid fa-book-open"></i> 一推し
       <% end %>
-    </li>
-    <li class="header__list--li">
+      </li>
+
+      <li class="nav-item">
       <%= link_to dinners_path do %>
       <i class="fas fa-utensils"></i> TL
       <% end %>
-    </li>
-    <li class="header__list--li">
+      </li>
+
+      <li class="nav-item">
       <%= link_to mypage_users_path do %>
       <i class="fa-sharp fa-solid fa-user-lock"></i> Mypage
       <% end %>
-    </li>
-    <li class="header__list--li">
+      </li>
+
+      <li class="nav-item">
       <%= link_to destroy_user_session_path, method: :delete do %>
       <i class="fas fa-sign-out-alt"></i> Log out
       <% end %>
-    </li class="header__list--li">
+      </li>
 
     <% elsif admin_signed_in? %>
-     <li class="header__list--li">
+     <li class="nav-item">
       <%= link_to admin_users_path do %>
-      会員一覧
+      ユーザ一覧
       <% end %>
-    </li>
-    <li class="header__list--li">
+     </li>
+
+    <li class="nav-item">
       <%= link_to admin_path do %>
       投稿一覧
       <% end %>
     </li>
-    <li class="header__list--li">
+
+    <li class="nav-item">
       <%= link_to admin_tags_path do %>
       タグ一覧
       <% end %>
     </li>
-    <li class="header__list--li">
+
+    <li class="nav-item">
       <%= link_to destroy_admin_session_path, method: :delete do %>
       <i class="fas fa-sign-out-alt"></i> Log out
       <% end %>
@@ -65,22 +95,7 @@
 
     <% else %>
 
-    <li class="header__list--li">
-      <%= link_to users_path do %>
-      <i class="fas fa-user-friends"></i>users
-      <% end %>
-    </li>
-    <li class="header__list--li">
-      <%= link_to album_dinners_path do %>
-      <i class="fa-solid fa-book-open"></i> 一推し
-      <% end %>
-    </li>
-    <li class="header__list--li">
-      <%= link_to dinners_path do %>
-      <i class="fas fa-utensils"></i> タイムライン
-      <% end %>
-    </li>
-    <li class="header__list--li">
+    <li class="nav-item log-in">
       <%= link_to new_user_session_path do %>
       <i class="fas fa-sign-in-alt"></i> Log in
       <% end %>
@@ -88,4 +103,5 @@
     <% end %>
     </ul>
 
-</header>
+</div>
+</nav>

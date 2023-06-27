@@ -40,9 +40,9 @@
 <%= dinner.memo %>
 </div>
 
-<div class="dinner-index__card--text--sentence">
-<span><%= render "public/favorite_btn", dinner: dinner %></i></span>
-<span><i class="fa-regular fa-message"></i><%= dinner.comments.count%></span>
+<div class="dinner-index__card--text--sentence" id="dinner_<%=dinner.id%>">
+<span class="favorite-btn"><%= render "public/favorite_btn", dinner: dinner %></i></span>
+<span><i class="fa-regular fa-message"></i></span><span class="comments-count"><%= dinner.comments.count%></span>
 <span><i class="fa-solid fa-book-open"></i><%= dinner.dinner_is_posted %></span></br>
 <span class="dinner-index__card--text--genre"><%= dinner.genre.name %></span>
 </div>

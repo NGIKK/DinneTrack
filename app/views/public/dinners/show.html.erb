@@ -51,51 +51,39 @@
 <%= @dinner.memo %>
 </div>
 
-<div class="dinner-detail__card--text--sentence">
-<span><%= render "public/favorite_btn", dinner: @dinner %></span>
-<span><i class="fa-regular fa-message"></i><%= @dinner.comments.count%></span>
-<span><i class="fa-solid fa-book-open"></i><%= @dinner.dinner_is_posted %></span>
-<span class="dinner-detail__card--text--genre"><%= @dinner.genre.name %></span>
+<div class="dinner-detail__card--text--sentence" id="dinner_<%=@dinner.id%>">
+  <span class="favorite-btn"><%= render "public/favorite_btn", dinner: @dinner %></span>
+  <span><i class="fa-regular fa-message"></i></span><span class="comments-count"><%= @dinner.comments.count%></span>
+  <span><i class="fa-solid fa-book-open"></i><%= @dinner.dinner_is_posted %></span>
+  <span class="dinner-detail__card--text--genre"><%= @dinner.genre.name %></span>
 </div>
 
 </div>
 </div>
 
 <div class="mt-3 dinner-detail__card--btn">
-<% if current_user == @dinner.user %>
-<%= link_to "編集する", edit_dinner_path(@dinner.id),class: "btn btn-success"%>
-<%= link_to "削除する", dinner_path(@dinner.id), method: :delete, data: { confirm: "本当に削除しますか？" },class:"btn btn-danger ml-2"%>
-<% end %>
+  <% if current_user == @dinner.user %>
+  <%= link_to "編集する", edit_dinner_path(@dinner.id),class: "btn btn-success"%>
+  <%= link_to "削除する", dinner_path(@dinner.id), method: :delete, data: { confirm: "本当に削除しますか？" },class:"btn btn-danger ml-2"%>
+  <% end %>
 </div>
 
 </div>
 
 <div class="col-md-3">
  <h4>Comments</h4>
- <% @dinner.comments.each do |comment| %>
-
- <table>
-  <row>
- <%= image_tag comment.user.get_profile_image("50x50","40x40+0+0")%>
- <%= link_to user_path(comment.user.id) do %>
- <%= comment.user.name %></br>
- <% end %>
- <span class="dinner-detail__comment"><%= comment.body %></span>
- <%if comment.user == current_user %>
- <%= link_to "削除", dinner_comment_path(comment.dinner_id,comment.id), method: :delete, data: { confirm: "本当に削除しますか？" }, class:"btn btn-danger btn-sm" %>
- <% end %>
- <% end %>
-  </row>
- </table>
+  <div class="comments">
+   <%= render "public/comments/comments_index", dinner: @dinner%>
+  </div>
 
  <div class="mt-3">
- <%= form_with model: [@dinner,@comment], url: dinner_comments_path(@dinner.id,@comment.id), method: :post do |f| %>
- <%= f.text_area :body, rows: "3", placeholder: "コメント", class:"form-control" %>
- <div class="text-right">
- <%= f.submit "送信" ,class:"btn btn-success  mt-3" %>
+   <%= form_with model: [@dinner,@comment], url: dinner_comments_path(@dinner.id,@comment.id), method: :post, local: false do |f| %>
+   <%= f.text_area :body, rows: "3", placeholder: "コメント", class:"form-control" %>
+  <div class="text-right">
+   <%= f.submit "送信" ,class:"btn btn-success  mt-3" %>
+  </div>
+  <% end %>
  </div>
- <% end %>
-</div>
 
 
 </div>

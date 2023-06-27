@@ -11,8 +11,7 @@ class Public::MealRecordsController < ApplicationController
       @meal_record = MealRecord.new(meal_record_params)
       @meal_records = MealRecord.all
       @recommendations = Dinner.where(genre_id: @user.genre_id).sample(3)
-      # render template: "public/users/mypage"
-      redirect_to request.referer
+      redirect_to request.referer, notice: "[error!]日付と金額は必須項目です。0円の場合は0を入力してください。"
     end
   end
 

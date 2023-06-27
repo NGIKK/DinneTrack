@@ -1,36 +1,18 @@
-.header{
+header{
   width: 100%;
   margin-top: auto;
   background-color: #bdb76b;
+}
 
- &__logo {
-   display: flex;
-   text-decoration: underline;
+ .navbar-nav li a {
+  color: inherit;
+  text-decoration: none;
  }
 
- &__text {
-   display: flex;
-   padding-left: 30px;
+ .navbar-nav li:hover {
+  text-decoration: underline;
  }
 
- &__list {
-   display: flex;
-   padding-left: 0;
-   margin: 0 10px;
-   list-style: none;
-   justify-content: flex-end;
-
-   &--li {
-     display: inline-block;
-     color: Black;
-     margin-left: 1em;
-     padding: 0 5px;
-
-     a {
-       color: inherit;
-       text-decoration: none;
-     }
-   }
-   }
+ .nav-item.log-in {
+  font-size: 1.2em;
  }
-

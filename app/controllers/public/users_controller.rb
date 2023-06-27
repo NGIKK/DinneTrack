@@ -1,6 +1,6 @@
 class Public::UsersController < ApplicationController
  before_action :ensure_guest_user, only: [:edit]
- before_action :set_user_search, only: [:index,:search]
+ before_action :set_user_search, only: [:index]
  before_action :authenticate_user!
  before_action :ensure_correct_user, only: [:edit,:update]
 
@@ -21,7 +21,7 @@ class Public::UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      redirect_to mypage_users_path
+      redirect_to mypage_users_path, notice: "ユーザ情報を更新しました"
     else
       render :edit
     end

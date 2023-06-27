@@ -32,3 +32,20 @@
 }
 }
 
+@media screen and (max-width:1024px) {
+  .top__text {
+    font-size: 7em;
+  }
+}
+/* タブレット縦置きサイズ（768px）以下の際に適用される設定 */
+@media screen and (max-width:768px) {
+  .top__text {
+    font-size: 6em;
+  }
+}
+/* スマートフォンサイズ（425px）以下の際に適用される設定 */
+@media screen and (max-width:425px) {
+  .top__text {
+    font-size: 3em;
+  }
+}

@@ -3,12 +3,13 @@ class Public::DinnersController < ApplicationController
    before_action :ensure_correct_user, only: [:edit,:update]
 
   def index
+      @q = Dinner.ransack(params[:q])
       @user = current_user
       if params[:followings_dinner]
         @user = current_user
-        @dinners = Dinner.where(user_id: @user.followings.ids).page(params[:page]).per(5).order(created_at: :desc)
+        @dinners = @q.result.where(user_id: @user.followings.ids).page(params[:page]).per(4).order(created_at: :desc)
       else
-       @dinners = Dinner.all.page(params[:page]).per(4).order(created_at: :desc)
+       @dinners = @q.result.page(params[:page]).per(4).order(created_at: :desc)
        @user = current_user
       end
   end
@@ -18,10 +19,10 @@ class Public::DinnersController < ApplicationController
   end
 
   def create
-    dinner = Dinner.new(dinner_params)
-    dinner.user_id = current_user.id
-    if dinner.save
-      redirect_to dinner_path(dinner.id), notice: "夕食を投稿しました"
+    @dinner = Dinner.new(dinner_params)
+    @dinner.user_id = current_user.id
+    if @dinner.save
+      redirect_to dinner_path(@dinner.id), notice: "夕食を投稿しました"
     else
       render :new
     end
@@ -50,12 +51,18 @@ class Public::DinnersController < ApplicationController
   def destroy
     dinner = Dinner.find(params[:id])
     dinner.destroy
-    redirect_to user_path(current_user.id)
+    redirect_to user_path(current_user.id), notice: "投稿を削除しました"
   end
 
   def album
-    @user = current_user
-    @dinners = Dinner.where(is_posted: true).page(params[:page]).per(8)
+     @genres = Genre.all
+     @dinners = Dinner.where(is_posted: true).page(params[:page]).per(6)
+  end
+
+  def genre_search
+    @genres = Genre.all
+    @genre = Genre.find(params[:id])
+    @dinners = @genre.dinners.where(is_posted: true).page(params[:page]).per(6)
   end
 
   private

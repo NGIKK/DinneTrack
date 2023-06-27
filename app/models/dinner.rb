@@ -67,6 +67,9 @@ class Dinner < ApplicationRecord
         (0..3).map { |n| post_dinner_style(n).count }
    end
 
-
-
+   def self.ransackable_attributes(auth_object = nil)
+    ["title"]
+   end
+  
+  
 end

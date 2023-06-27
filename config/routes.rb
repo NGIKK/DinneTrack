@@ -19,7 +19,9 @@ Rails.application.routes.draw do
     get "/" => "homes#top"
     resources :users, only: [:index,:show,:edit,:update,:destroy]
     resources :tags, only: [:index,:destroy]
-    resources :dinners, only: [:show,:destroy]
+    resources :dinners, only: [:show,:destroy] do
+      resources :comments, only: [:destroy]
+    end
  end
 
  # urlにpublicを含めない
@@ -27,6 +29,7 @@ Rails.application.routes.draw do
    root to: "homes#top"
     get "/about" => "homes#about"
     get '/search' => "searches#search"
+    get "dinners/genre_search/:id" => "dinners#genre_search", as: 'genre_search'
 
     resources :users, only: [:index,:show,:edit,:update,:destroy] do
       resource :relationships, only: [:create,:destroy]
