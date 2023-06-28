@@ -1,4 +1,5 @@
 # DinneTrack
+<img width="1120" alt="スクリーンショット 2023-06-28 9 23 12" src="https://github.com/NGIKK/DinneTrack/assets/129597259/5dd5981c-587a-46bf-a2a2-4ea9a3e8195b">
 
 ## サイト概要
 ### サイトテーマ
@@ -30,7 +31,9 @@
 - マイページで日々の食費を記録して、夕食の傾向などと一緒に可視化された食生活を振り返る
 
 ## 設計書
-現在作成中です。
+- ER図
+<img width="497" alt="スクリーンショット 2023-06-28 9 16 30" src="https://github.com/NGIKK/DinneTrack/assets/129597259/456cc280-fe66-4ca7-a092-31c3003a3991">
+- テーブル定義書　https://docs.google.com/spreadsheets/d/1roJJpcWe0e68cOKcIFeIQKRCA4k-yqQdODFZkVuMqx0/edit#gid=1583001996
 
 ## 開発環境
 - OS：Linux(CentOS)
@@ -40,4 +43,5 @@
 - IDE：Cloud9
 
 ## 使用素材
-使用検討中です。
+- Top画像はこちらのサイトの画像を使用しております。https://www.photo-ac.com/
+- サイトロゴはこちらのサイトにて作成しました。https://www.shopify.com/jp/tools/logo-maker
