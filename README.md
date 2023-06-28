@@ -32,7 +32,7 @@
 
 ## 設計書
 - ER図
-<img width="497" alt="スクリーンショット 2023-06-28 9 16 30" src="https://github.com/NGIKK/DinneTrack/assets/129597259/456cc280-fe66-4ca7-a092-31c3003a3991">
+<img width="497" alt="スクリーンショット 2023-06-28 9 16 30" src="https://github.com/NGIKK/DinneTrack/assets/129597259/456cc280-fe66-4ca7-a092-31c3003a3991">  
 - テーブル定義書　https://docs.google.com/spreadsheets/d/1roJJpcWe0e68cOKcIFeIQKRCA4k-yqQdODFZkVuMqx0/edit#gid=1583001996
 
 ## 開発環境
