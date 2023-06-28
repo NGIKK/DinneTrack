@@ -7,7 +7,7 @@ class Admin::DinnersController < ApplicationController
   def destroy
     dinner = Dinner.find(params[:id])
     dinner.destroy
-    redirect_to "/admin"
+    redirect_to "/admin", notice: "投稿を削除しました"
   end
 
 end
