@@ -30,49 +30,49 @@
 <div class="dinner-detail__card card-skin mx-auto">
 
 <div class="dinner-detail__auther">
-<%= image_tag dinner.user.get_profile_image("50x50","40x40+0+0")%>
-<%= link_to user_path(dinner.user.id) do %>
-<%= dinner.user.name %>
-<% end %>
+  <%= image_tag dinner.user.get_profile_image("50x50","40x40+0+0")%>
+  <%= link_to user_path(dinner.user.id) do %>
+  <%= dinner.user.name %>
+  <% end %>
 </div>
 
 
 <div class="dinner-detail__card--image">
-<%= image_tag dinner.get_dinner_image("200x200","200x200+0+0")%>
+  <%= image_tag dinner.get_dinner_image("200x200","200x200+0+0")%>
 </div>
 
 <div class="dinner-detail__card--text">
 
 <div class="dinner-detail__card--text--date">
-<%= l dinner.created_at %>
+  <%= l dinner.created_at %>
 </div>
 
 <div class="dinner-detail__card--text--title">
-<%= link_to dinner_path(dinner.id) do %>
-<strong><%= dinner.title %></strong>
-<% end %>
+  <%= link_to dinner_path(dinner.id) do %>
+  <strong><%= dinner.title %></strong>
+  <% end %>
 </div>
 
 <div class="dinner-detail__card--text--sentence">
-&yen;<%= dinner.cost.to_s(:delimited) %>
+  &yen;<%= dinner.cost.to_s(:delimited) %>
 </div>
 
 <div class="dinner-detail__card--text--sentence">
- 材料:
- <% dinner.tags.each do |tag| %>
- <%= tag.name %>
- <% end %>
+  材料:
+  <% dinner.tags.each do |tag| %>
+  <%= tag.name %>
+  <% end %>
 </div>
 
 <div class="dinner-detail__card--text--sentence">
-<%= dinner.memo %>
+  <%= dinner.memo %>
 </div>
 
 <div class="dinner-detail__card--text--sentence" id="dinner_<%=dinner.id%>">
-<span class="favorite-btn"><%= render "public/favorite_btn", dinner: dinner %></span>
-<span><i class="fa-regular fa-message"></i></span><span class="comments-count"><%= dinner.comments.count%></span>
-<span><i class="fa-solid fa-book-open"></i><%= dinner.dinner_is_posted %></span>
-<span class="dinner-detail__card--text--genre"><%= dinner.genre.name %></span>
+  <span class="favorite-btn"><%= render "public/favorite_btn", dinner: dinner %></span>
+  <span><i class="fa-regular fa-message"></i></span><span class="comments-count"><%= dinner.comments.count%></span>
+  <span><i class="fa-solid fa-book-open"></i><%= dinner.dinner_is_posted %></span>
+  <span class="dinner-detail__card--text--genre"><%= dinner.genre.name %></span>
 </div>
 
 </div>
@@ -80,10 +80,10 @@
 </div>
 
 <div class="row mt-1 mb-3 mx-auto  dinner-detail__card--btn">
-<% if current_user == dinner.user %>
-<%= link_to "edit", edit_dinner_path(dinner.id),class: "btn btn-sm btn-outline-success"%>
-<%= link_to "delete", dinner_path(dinner.id), method: :delete, class:"btn btn-sm btn-outline-danger ml-2 "%>
-<% end %>
+  <% if current_user == dinner.user %>
+  <%= link_to "edit", edit_dinner_path(dinner.id),class: "btn btn-sm btn-outline-success"%>
+  <%= link_to "delete", dinner_path(dinner.id), method: :delete, class:"btn btn-sm btn-outline-danger ml-2 "%>
+  <% end %>
 </div>
 
 <% end %>

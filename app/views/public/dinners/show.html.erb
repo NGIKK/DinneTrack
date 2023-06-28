@@ -7,7 +7,7 @@
 <div class="row mt-3 justify-content-between">
 
 <div class="sidebar col-md-3 mb-3">
-<%= render "public/user_info", user: @user  %>
+ <%= render "public/user_info", user: @user  %>
 </div>
 
 <div class="dinner-detail col-md-4">
@@ -15,29 +15,29 @@
 <div class="dinner-detail__card card-skin">
 
 <div class="dinner-detail__auther">
-<%= image_tag @dinner.user.get_profile_image("50x50","40x40+0+0")%>
-<%= link_to user_path(@dinner.user.id) do %>
-<%= @dinner.user.name %>
-<% end %>
+ <%= image_tag @dinner.user.get_profile_image("50x50","40x40+0+0")%>
+ <%= link_to user_path(@dinner.user.id) do %>
+ <%= @dinner.user.name %>
+ <% end %>
 </div>
 
 
 <div class="dinner-detail__card--image">
-<%= image_tag @dinner.get_dinner_image("200x200","200x200+0+0")%>
+ <%= image_tag @dinner.get_dinner_image("200x200","200x200+0+0")%>
 </div>
 
 <div class="dinner-detail__card--text">
 
 <div class="dinner-detail__card--text--date">
-<%= l @dinner.created_at %>
+ <%= l @dinner.created_at %>
 </div>
 
 <div class="dinner-detail__card--text--title">
-<strong><%= @dinner.title %></strong>
+ <strong><%= @dinner.title %></strong>
 </div>
 
 <div class="dinner-detail__card--text--sentence">
-&yen;<%= @dinner.cost.to_s(:delimited) %>
+ &yen;<%= @dinner.cost.to_s(:delimited) %>
 </div>
 
 <div class="dinner-detail__card--text--sentence">

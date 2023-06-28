@@ -3,30 +3,30 @@
 
 <div class="dinner-index__card card-skin">
 <div class="dinner-index__card--auther">
-<%= image_tag dinner.user.get_profile_image("50x50","40x40+0+0")%>
-<%= link_to user_path(dinner.user.id) do %>
-<%= dinner.user.name %>
-<% end %>
+  <%= image_tag dinner.user.get_profile_image("50x50","40x40+0+0")%>
+  <%= link_to user_path(dinner.user.id) do %>
+  <%= dinner.user.name %>
+  <% end %>
 </div>
 
 <div class="dinner-index__card--image">
-<%= image_tag dinner.get_dinner_image("200x200","200x200+0+0")%>
+  <%= image_tag dinner.get_dinner_image("200x200","200x200+0+0")%>
 </div>
 
 <div class="dinner-index__card--text">
 
 <div class="dinner-index__card--text--date">
-<%= l dinner.created_at %>
+  <%= l dinner.created_at %>
 </div>
 
 <div class="dinner-index__card--text--title">
-<%= link_to dinner_path(dinner.id) do %>
-<strong><%= dinner.title %></strong>
-<% end %>
+  <%= link_to dinner_path(dinner.id) do %>
+  <strong><%= dinner.title %></strong>
+  <% end %>
 </div>
 
 <div class="dinner-index__card--text--sentence">
-&yen;<%= dinner.cost.to_s(:delimited) %>
+  &yen;<%= dinner.cost.to_s(:delimited) %>
 </div>
 
 <div class="dinner-index__card--text--sentence tag-limit">
@@ -41,10 +41,10 @@
 </div>
 
 <div class="dinner-index__card--text--sentence" id="dinner_<%=dinner.id%>">
-<span class="favorite-btn"><%= render "public/favorite_btn", dinner: dinner %></i></span>
-<span><i class="fa-regular fa-message"></i></span><span class="comments-count"><%= dinner.comments.count%></span>
-<span><i class="fa-solid fa-book-open"></i><%= dinner.dinner_is_posted %></span></br>
-<span class="dinner-index__card--text--genre"><%= dinner.genre.name %></span>
+  <span class="favorite-btn"><%= render "public/favorite_btn", dinner: dinner %></i></span>
+  <span><i class="fa-regular fa-message"></i></span><span class="comments-count"><%= dinner.comments.count%></span>
+  <span><i class="fa-solid fa-book-open"></i><%= dinner.dinner_is_posted %></span></br>
+  <span class="dinner-index__card--text--genre"><%= dinner.genre.name %></span>
 </div>
 
 </div>

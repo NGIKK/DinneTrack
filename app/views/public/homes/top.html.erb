@@ -1,31 +1,28 @@
 <div class="top">
-<%= image_tag 'cover.jpg', alt: 'TOP画像', class: "top__image" %>
-<h1 class="top__text">DinneTrack</h1>
+  <%= image_tag 'cover.jpg', alt: 'TOP画像', class: "top__image" %>
+  <h1 class="top__text">DinneTrack</h1>
 </div>
 
-<div class="container">
-<div class="top__introduction">
+  <div class="container">
 
-<div class="top__introduction--text">
-<p>夕飯をシェアしながら、アイディアを得るSNS</p>
-<p>食生活の記録も気軽に行えます</p>
-<p>さあ、あなたも初めましょう</p>
-</div>
+    <div class="top__introduction">
 
-<div>
-  <%= link_to about_path do%>
-  <h4>About more</h4>
-  <p>-使い方、ご利用の注意点-</p>
-  <% end %>
-</div>
-<%=link_to "新規登録", new_user_registration_path, class:"btn btn-success" %>
-<%=link_to "ゲストログイン", users_guest_sign_in_path,method: :post, class:"btn btn-info" %>
-</div>
+    <div class="top__introduction--text">
+      <p>夕飯をシェアしながら、アイディアを得るSNS</p>
+      <p>食生活の記録も気軽に行えます</p>
+      <p>さあ、あなたも初めましょう</p>
+    </div>
 
-<!--<div class="top__introduction--info">-->
-<!--  <p>プライバシーポリシー</p>-->
-<!--  <p>利用規約</p>-->
-<!--</div>-->
+    <div>
+      <%= link_to about_path do%>
+      <h4>About more</h4>
+      <p>-使い方、ご利用の注意点-</p>
+      <% end %>
+    </div>
+      <%=link_to "新規登録", new_user_registration_path, class:"btn btn-success" %>
+      <%=link_to "ゲストログイン", users_guest_sign_in_path,method: :post, class:"btn btn-info" %>
+    </div>
 
-</div>
+
+  </div>
 </div>

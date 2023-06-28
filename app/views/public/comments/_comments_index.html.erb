@@ -2,14 +2,15 @@
 
  <table>
   <row>
- <%= image_tag comment.user.get_profile_image("50x50","40x40+0+0")%>
- <%= link_to user_path(comment.user.id) do %>
- <%= comment.user.name %></br>
- <% end %>
- <span class="dinner-detail__comment"><%= comment.body %></span>
- <%if comment.user == current_user %>
- <%= link_to "削除", dinner_comment_path(comment.dinner_id,comment.id), method: :delete,remote: true, data: { confirm: "本当に削除しますか？" }, class:"btn btn-danger btn-sm" %>
- <% end %>
- <% end %>
+  <%= image_tag comment.user.get_profile_image("50x50","40x40+0+0")%>
+  <%= link_to user_path(comment.user.id) do %>
+  <%= comment.user.name %></br>
+  <% end %>
+  <span class="dinner-detail__comment"><%= comment.body %></span>
+  <%if comment.user == current_user %>
+    <%= link_to "削除", dinner_comment_path(comment.dinner_id,comment.id), method: :delete,remote: true, data: { confirm: "本当に削除しますか？" }, class:"btn btn-danger btn-sm" %>
+  <% end %>
   </row>
  </table>
+
+ <% end %>
