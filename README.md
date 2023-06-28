@@ -31,9 +31,10 @@
 - マイページで日々の食費を記録して、夕食の傾向などと一緒に可視化された食生活を振り返る
 
 ## 設計書
-- ER図
-<img width="497" alt="スクリーンショット 2023-06-28 9 16 30" src="https://github.com/NGIKK/DinneTrack/assets/129597259/456cc280-fe66-4ca7-a092-31c3003a3991">  
-- テーブル定義書　https://docs.google.com/spreadsheets/d/1roJJpcWe0e68cOKcIFeIQKRCA4k-yqQdODFZkVuMqx0/edit#gid=1583001996
+- ER図</br>
+<img width="497" alt="スクリーンショット 2023-06-28 9 16 30" src="https://github.com/NGIKK/DinneTrack/assets/129597259/456cc280-fe66-4ca7-a092-31c3003a3991"></br>
+- テーブル定義書</br>
+https://docs.google.com/spreadsheets/d/1roJJpcWe0e68cOKcIFeIQKRCA4k-yqQdODFZkVuMqx0/edit#gid=1583001996
 
 ## 開発環境
 - OS：Linux(CentOS)
